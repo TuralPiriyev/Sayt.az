@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ChevronDown, Bell, DollarSign } from 'lucide-react';
-
+import {Link} from "react-router-dom"
 const Navbar = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
 
@@ -18,7 +18,8 @@ const Navbar = () => {
         </div>
       ),
       title: "Saytların hazırlanması",
-      description: "Veb saytların hazırlanması"
+      description: "Veb saytların hazırlanması",
+      path: "/MakingTheSite"
     },
     {
       icon: (
@@ -31,6 +32,7 @@ const Navbar = () => {
       ),
       title: "Hökümat və qeyri-kommersiya saytları",
       description: "Hökümat və qeyri-kommersiya təşkilatlarını müasir, əlçatan rəqəmsal həllərlə gücləndirimək"
+      ,path: "/Government-WebSite"
     },
     {
       icon: (
@@ -42,6 +44,7 @@ const Navbar = () => {
       ),
       title: "Kiçik biznes saytları",
       description: "Kiçik biznesinizi peşəkar və sərfəli onlayn mövcudluqla gücləndirim"
+     , path: "/SmallBusiness"
     },
     {
       icon: (
@@ -54,7 +57,8 @@ const Navbar = () => {
         </div>
       ),
       title: "E-ticarət saytları",
-      description: "Güclü və istifadəsi asan onlayn mağaza ilə satışlarınızı artırın"
+      description: "Güclü və istifadəsi asan onlayn mağaza ilə satışlarınızı artırın",
+      path: "/ElectronWebSite"
     },
     {
       icon: (
@@ -71,6 +75,7 @@ const Navbar = () => {
       ),
       title: "Hüquq firma saytı",
       description: "Hüquq fəaliyyətinizi inkişaf etmiş onlayn mövcudluqla yüksəldin"
+      , path: "/LawFirm"
     },
     {
       icon: (
@@ -84,8 +89,11 @@ const Navbar = () => {
       ),
       title: "Bloqlar və Şəxsi Vebsaytlar",
       description: "Fərdi bloq və ya şəxsi vebsayt ilə özünəxas rəqəmsal kimlik yaradın"
+    , path: "/Blog"
     }
   ];
+
+
 
   const domenItems = [
     {
@@ -94,8 +102,9 @@ const Navbar = () => {
           <div className="w-6 h-4 border-2 border-white rounded"></div>
         </div>
       ),
-      title: ".az domen",
-      description: "Azərbaycan milli domeni"
+      title: "Domen",
+      description: "Azərbaycan milli domeni",
+      path: "/domen"
     },
     {
       icon: (
@@ -104,25 +113,8 @@ const Navbar = () => {
         </div>
       ),
       title: ".com domen",
-      description: "Beynəlxalq kommersiya domeni"
-    },
-    {
-      icon: (
-        <div className="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center">
-          <div className="w-6 h-4 border-2 border-white rounded"></div>
-        </div>
-      ),
-      title: ".org domen",
-      description: "Təşkilatlar üçün domen"
-    },
-    {
-      icon: (
-        <div className="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center">
-          <div className="w-6 h-4 border-2 border-white rounded"></div>
-        </div>
-      ),
-      title: "Domen transfer",
-      description: "Domeninizi bizə köçürün"
+      description: "Beynəlxalq kommersiya domeni",
+      path: "/FreeDomen"
     }
   ];
 
@@ -279,13 +271,17 @@ const Navbar = () => {
                 <div className="absolute top-full left-0 mt-2 w-96 bg-slate-800 rounded-lg shadow-xl z-50 border border-slate-700">
                   <div className="p-4 space-y-2">
                     {webSaytItems.map((item, index) => (
-                      <div key={index} className="flex items-start space-x-3 p-3 rounded-lg hover:bg-slate-700 cursor-pointer transition-colors">
+                      <Link key={index}
+                            to = {item.path}
+                       className="flex items-start space-x-3 p-3 rounded-lg hover:bg-slate-700 cursor-pointer transition-colors"
+                       
+                       >
                         {item.icon}
                         <div>
                           <h3 className="font-semibold text-white mb-1">{item.title}</h3>
                           <p className="text-sm text-gray-400">{item.description}</p>
                         </div>
-                      </div>
+                      </Link>
                     ))}
                   </div>
                 </div>
