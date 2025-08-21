@@ -497,7 +497,7 @@ const Main = () => {
       </div>
 
       {/* Real-time Tracking Section */}
-      <div className="bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 p-6">
+      <div id = "Real-Time-Tracking" className="bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 p-6">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className="text-center mb-12">

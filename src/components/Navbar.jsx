@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { ChevronDown, Bell, DollarSign } from 'lucide-react';
-import {Link} from "react-router-dom"
+import { ChevronDown, Bell } from 'lucide-react';
+import { Link } from "react-router-dom";
+
 const Navbar = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
 
@@ -31,8 +32,8 @@ const Navbar = () => {
         </div>
       ),
       title: "Hökümat və qeyri-kommersiya saytları",
-      description: "Hökümat və qeyri-kommersiya təşkilatlarını müasir, əlçatan rəqəmsal həllərlə gücləndirimək"
-      ,path: "/Government-WebSite"
+      description: "Hökümat və qeyri-kommersiya təşkilatlarını müasir, əlçatan rəqəmsal həllərlə gücləndirimək",
+      path: "/Government-WebSite"
     },
     {
       icon: (
@@ -43,8 +44,8 @@ const Navbar = () => {
         </div>
       ),
       title: "Kiçik biznes saytları",
-      description: "Kiçik biznesinizi peşəkar və sərfəli onlayn mövcudluqla gücləndirim"
-     , path: "/SmallBusiness"
+      description: "Kiçik biznesinizi peşəkar və sərfəli onlayn mövcudluqla gücləndirim",
+      path: "/SmallBusiness"
     },
     {
       icon: (
@@ -74,8 +75,8 @@ const Navbar = () => {
         </div>
       ),
       title: "Hüquq firma saytı",
-      description: "Hüquq fəaliyyətinizi inkişaf etmiş onlayn mövcudluqla yüksəldin"
-      , path: "/LawFirm"
+      description: "Hüquq fəaliyyətinizi inkişaf etmiş onlayn mövcudluqla yüksəldin",
+      path: "/LawFirm"
     },
     {
       icon: (
@@ -88,12 +89,10 @@ const Navbar = () => {
         </div>
       ),
       title: "Bloqlar və Şəxsi Vebsaytlar",
-      description: "Fərdi bloq və ya şəxsi vebsayt ilə özünəxas rəqəmsal kimlik yaradın"
-    , path: "/Blog"
+      description: "Fərdi bloq və ya şəxsi vebsayt ilə özünəxas rəqəmsal kimlik yaradın",
+      path: "/Blog"
     }
   ];
-
-
 
   const domenItems = [
     {
@@ -119,120 +118,24 @@ const Navbar = () => {
   ];
 
   const hostingItems = [
-    {
-      icon: (
-        <div className="w-12 h-12 bg-purple-600 rounded-lg flex items-center justify-center">
-          <div className="w-6 h-4 border-2 border-white rounded"></div>
-        </div>
-      ),
-      title: "Veb Hosting",
-      description: "Sürətli və etibarlı veb hosting"
-    },
-    {
-      icon: (
-        <div className="w-12 h-12 bg-purple-600 rounded-lg flex items-center justify-center">
-          <div className="w-6 h-4 border-2 border-white rounded"></div>
-        </div>
-      ),
-      title: "VPS Hosting",
-      description: "Virtual private server hosting"
-    },
-    {
-      icon: (
-        <div className="w-12 h-12 bg-purple-600 rounded-lg flex items-center justify-center">
-          <div className="w-6 h-4 border-2 border-white rounded"></div>
-        </div>
-      ),
-      title: "Dedicated Server",
-      description: "Tam ayrılmış server həlləri"
-    },
-    {
-      icon: (
-        <div className="w-12 h-12 bg-purple-600 rounded-lg flex items-center justify-center">
-          <div className="w-6 h-4 border-2 border-white rounded"></div>
-        </div>
-      ),
-      title: "Cloud Hosting",
-      description: "Bulud əsaslı hosting həlləri"
-    }
+    { title: "Veb Hosting", description: "Sürətli və etibarlı veb hosting", path: "/WebHosting" },
+    { title: "VPS Hosting", description: "Virtual private server hosting", path: "/VPS" },
+    { title: "Dedicated Server", description: "Tam ayrılmış server həlləri", path: "/ServerHosting" },
+    
   ];
 
   const xidmetlerItems = [
-    {
-      icon: (
-        <div className="w-12 h-12 bg-orange-600 rounded-lg flex items-center justify-center">
-          <div className="w-6 h-4 border-2 border-white rounded"></div>
-        </div>
-      ),
-      title: "SEO",
-      description: "Axtarış sistemlərində optimallaşdırma"
-    },
-    {
-      icon: (
-        <div className="w-12 h-12 bg-orange-600 rounded-lg flex items-center justify-center">
-          <div className="w-6 h-4 border-2 border-white rounded"></div>
-        </div>
-      ),
-      title: "SMM",
-      description: "Sosial media marketinqi"
-    },
-    {
-      icon: (
-        <div className="w-12 h-12 bg-orange-600 rounded-lg flex items-center justify-center">
-          <div className="w-6 h-4 border-2 border-white rounded"></div>
-        </div>
-      ),
-      title: "Texniki Dəstək",
-      description: "24/7 texniki dəstək xidməti"
-    },
-    {
-      icon: (
-        <div className="w-12 h-12 bg-orange-600 rounded-lg flex items-center justify-center">
-          <div className="w-6 h-4 border-2 border-white rounded"></div>
-        </div>
-      ),
-      title: "SSL Sertifikat",
-      description: "Təhlükəsizlik sertifikatları"
-    }
+    { title: "SEO", description: "Axtarış sistemlərində optimallaşdırma", path: "#Real-Time-Tracking" },
+    { title: "SMM", description: "Sosial media marketinqi", path: "/SMM" },
+    { title: "Texniki Dəstək", description: "24/7 texniki dəstək xidməti", path: "/Support" },
+    { title: "SSL Sertifikat", description: "Təhlükəsizlik sertifikatları", path: "/SSL" }
   ];
 
   const sirketItems = [
-    {
-      icon: (
-        <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center">
-          <div className="w-6 h-4 border-2 border-white rounded"></div>
-        </div>
-      ),
-      title: "Haqqımızda",
-      description: "Şirkətimiz haqqında məlumat"
-    },
-    {
-      icon: (
-        <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center">
-          <div className="w-6 h-4 border-2 border-white rounded"></div>
-        </div>
-      ),
-      title: "Əlaqə",
-      description: "Bizimlə əlaqə saxlayın"
-    },
-    {
-      icon: (
-        <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center">
-          <div className="w-6 h-4 border-2 border-white rounded"></div>
-        </div>
-      ),
-      title: "Bloq",
-      description: "Ən son xəbərlər və məqalələr"
-    },
-    {
-      icon: (
-        <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center">
-          <div className="w-6 h-4 border-2 border-white rounded"></div>
-        </div>
-      ),
-      title: "Portfolio",
-      description: "Tamamladığımız layihələr"
-    }
+    { title: "Haqqımızda", description: "Şirkətimiz haqqında məlumat", path: "/About" },
+    { title: "Əlaqə", description: "Bizimlə əlaqə saxlayın", path: "/Contact" },
+    { title: "Bloq", description: "Ən son xəbərlər və məqalələr", path: "/CompanyBlog" },
+    { title: "Portfolio", description: "Tamamladığımız layihələr", path: "/Portfolio" }
   ];
 
   const languages = [
@@ -251,9 +154,7 @@ const Navbar = () => {
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="text-2xl font-bold">
-            sayt.az
-          </div>
+          <div className="text-2xl font-bold">sayt.az</div>
 
           {/* Navigation Menu */}
           <div className="hidden md:flex items-center space-x-8">
@@ -266,16 +167,12 @@ const Navbar = () => {
                 <span>Veb sayt</span>
                 <ChevronDown className="w-4 h-4" />
               </button>
-              
+
               {activeDropdown === 'veb-sayt' && (
                 <div className="absolute top-full left-0 mt-2 w-96 bg-slate-800 rounded-lg shadow-xl z-50 border border-slate-700">
                   <div className="p-4 space-y-2">
                     {webSaytItems.map((item, index) => (
-                      <Link key={index}
-                            to = {item.path}
-                       className="flex items-start space-x-3 p-3 rounded-lg hover:bg-slate-700 cursor-pointer transition-colors"
-                       
-                       >
+                      <Link key={index} to={item.path} className="flex items-start space-x-3 p-3 rounded-lg hover:bg-slate-700 cursor-pointer transition-colors">
                         {item.icon}
                         <div>
                           <h3 className="font-semibold text-white mb-1">{item.title}</h3>
@@ -297,18 +194,18 @@ const Navbar = () => {
                 <span>Domen</span>
                 <ChevronDown className="w-4 h-4" />
               </button>
-              
+
               {activeDropdown === 'domen' && (
                 <div className="absolute top-full left-0 mt-2 w-80 bg-slate-800 rounded-lg shadow-xl z-50 border border-slate-700">
                   <div className="p-4 space-y-2">
                     {domenItems.map((item, index) => (
-                      <div key={index} className="flex items-start space-x-3 p-3 rounded-lg hover:bg-slate-700 cursor-pointer transition-colors">
+                      <Link key={index} to={item.path} className="flex items-start space-x-3 p-3 rounded-lg hover:bg-slate-700 cursor-pointer transition-colors">
                         {item.icon}
                         <div>
                           <h3 className="font-semibold text-white mb-1">{item.title}</h3>
                           <p className="text-sm text-gray-400">{item.description}</p>
                         </div>
-                      </div>
+                      </Link>
                     ))}
                   </div>
                 </div>
@@ -324,18 +221,20 @@ const Navbar = () => {
                 <span>Hosting</span>
                 <ChevronDown className="w-4 h-4" />
               </button>
-              
+
               {activeDropdown === 'hosting' && (
                 <div className="absolute top-full left-0 mt-2 w-80 bg-slate-800 rounded-lg shadow-xl z-50 border border-slate-700">
                   <div className="p-4 space-y-2">
                     {hostingItems.map((item, index) => (
-                      <div key={index} className="flex items-start space-x-3 p-3 rounded-lg hover:bg-slate-700 cursor-pointer transition-colors">
-                        {item.icon}
+                      <Link key={index} to={item.path} className="flex items-start space-x-3 p-3 rounded-lg hover:bg-slate-700 cursor-pointer transition-colors">
+                        <div className="w-12 h-12 bg-purple-600 rounded-lg flex items-center justify-center">
+                          <div className="w-6 h-4 border-2 border-white rounded"></div>
+                        </div>
                         <div>
                           <h3 className="font-semibold text-white mb-1">{item.title}</h3>
                           <p className="text-sm text-gray-400">{item.description}</p>
                         </div>
-                      </div>
+                      </Link>
                     ))}
                   </div>
                 </div>
@@ -351,18 +250,20 @@ const Navbar = () => {
                 <span>Xidmətlər</span>
                 <ChevronDown className="w-4 h-4" />
               </button>
-              
+
               {activeDropdown === 'xidmetler' && (
                 <div className="absolute top-full left-0 mt-2 w-80 bg-slate-800 rounded-lg shadow-xl z-50 border border-slate-700">
                   <div className="p-4 space-y-2">
                     {xidmetlerItems.map((item, index) => (
-                      <div key={index} className="flex items-start space-x-3 p-3 rounded-lg hover:bg-slate-700 cursor-pointer transition-colors">
-                        {item.icon}
+                      <Link key={index} to={item.path} className="flex items-start space-x-3 p-3 rounded-lg hover:bg-slate-700 cursor-pointer transition-colors">
+                        <div className="w-12 h-12 bg-orange-600 rounded-lg flex items-center justify-center">
+                          <div className="w-6 h-4 border-2 border-white rounded"></div>
+                        </div>
                         <div>
                           <h3 className="font-semibold text-white mb-1">{item.title}</h3>
                           <p className="text-sm text-gray-400">{item.description}</p>
                         </div>
-                      </div>
+                      </Link>
                     ))}
                   </div>
                 </div>
@@ -378,18 +279,20 @@ const Navbar = () => {
                 <span>Şirkət</span>
                 <ChevronDown className="w-4 h-4" />
               </button>
-              
+
               {activeDropdown === 'sirket' && (
                 <div className="absolute top-full left-0 mt-2 w-80 bg-slate-800 rounded-lg shadow-xl z-50 border border-slate-700">
                   <div className="p-4 space-y-2">
                     {sirketItems.map((item, index) => (
-                      <div key={index} className="flex items-start space-x-3 p-3 rounded-lg hover:bg-slate-700 cursor-pointer transition-colors">
-                        {item.icon}
+                      <Link key={index} to={item.path} className="flex items-start space-x-3 p-3 rounded-lg hover:bg-slate-700 cursor-pointer transition-colors">
+                        <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center">
+                          <div className="w-6 h-4 border-2 border-white rounded"></div>
+                        </div>
                         <div>
                           <h3 className="font-semibold text-white mb-1">{item.title}</h3>
                           <p className="text-sm text-gray-400">{item.description}</p>
                         </div>
-                      </div>
+                      </Link>
                     ))}
                   </div>
                 </div>
@@ -410,14 +313,10 @@ const Navbar = () => {
                 onClick={() => toggleDropdown('language')}
                 className="flex items-center space-x-2 hover:text-blue-400 transition-colors"
               >
-                <img 
-                  src="https://flagcdn.com/w20/az.png" 
-                  alt="Azerbaijan" 
-                  className="w-5 h-3"
-                />
+                <img src="https://flagcdn.com/w20/az.png" alt="Azerbaijan" className="w-5 h-3" />
                 <ChevronDown className="w-4 h-4" />
               </button>
-              
+
               {activeDropdown === 'language' && (
                 <div className="absolute top-full right-0 mt-2 w-12 bg-slate-800 rounded-lg shadow-xl z-50 border border-slate-700">
                   <div className="p-1">
@@ -440,7 +339,7 @@ const Navbar = () => {
                 <span className="text-lg">₼</span>
                 <ChevronDown className="w-4 h-4" />
               </button>
-              
+
               {activeDropdown === 'currency' && (
                 <div className="absolute top-full right-0 mt-2 w-12 bg-slate-800 rounded-lg shadow-xl z-50 border border-slate-700">
                   <div className="p-1">
@@ -460,19 +359,14 @@ const Navbar = () => {
             </button>
 
             {/* Daxil olun */}
-            <button className="hover:text-blue-400 transition-colors">
-              Daxil olun
-            </button>
+            <button className="hover:text-blue-400 transition-colors">Daxil olun</button>
           </div>
         </div>
       </div>
 
       {/* Overlay to close dropdown when clicking outside */}
       {activeDropdown && (
-        <div 
-          className="fixed inset-0 z-40" 
-          onClick={() => setActiveDropdown(null)}
-        ></div>
+        <div className="fixed inset-0 z-40" onClick={() => setActiveDropdown(null)}></div>
       )}
     </nav>
   );

@@ -11,22 +11,33 @@ import Blog from '../pages/Veb-Sayt/Blog';
 // Domen
 import Domen from '../pages/Domen/Domen';
 import FreeDomen from '../pages/Domen/FreeDomain';
+// Hosting
+import WebHosting from '../pages/Hosting/Web-Hosting';
+import VPS from '../pages/Hosting/VPS';
+import ServerHosting from '../pages/Hosting/Server-Hosting';
 function AppRoutes() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Main />} />
-          // Veb-Sayt Routes
+          {/* // Veb-Sayt Routes */}
           <Route path = "MakingTheSite" element = {<MakingTheSite/>}/>
           <Route path = "Government-WebSite" element = {<GovernmentWebSite/>}/>
           <Route path = "SmallBusiness" element = {<SmallBusiness/>}/>
           <Route path = "ElectronWebSite" element = {<ElectronWebSite/>}/>
-          <Route path = "LawFirm" element = {<LawFirm/>}/></Route>
+          <Route path = "LawFirm" element = {<LawFirm/>}/>
           <Route path = "Blog" element = {<Blog/>}/>
-          // Domen Routes
+
+          {/* // Domen Routes */}
           <Route path = "domen" element = {<Domen/>}/>
           <Route path = "FreeDomen" element = {<FreeDomen/>}/>
+          
+           {/* //Hosting Routes */}
+          <Route path="WebHosting" element={<WebHosting />} />
+          <Route path="VPS" element={<VPS />} />
+          <Route path="ServerHosting" element={<ServerHosting />} />
+          </Route>
      </Routes>
     </BrowserRouter>
   );
