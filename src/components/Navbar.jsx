@@ -125,17 +125,24 @@ const Navbar = () => {
   ];
 
   const xidmetlerItems = [
-    { title: "SEO", description: "Axtarış sistemlərində optimallaşdırma", path: "#Real-Time-Tracking" },
-    { title: "SMM", description: "Sosial media marketinqi", path: "/SMM" },
-    { title: "Texniki Dəstək", description: "24/7 texniki dəstək xidməti", path: "/Support" },
-    { title: "SSL Sertifikat", description: "Təhlükəsizlik sertifikatları", path: "/SSL" }
+    { title: "Vebsayt sifarisinizi izleyin", description: "Axtarış sistemlərində optimallaşdırma", path: "#Real-Time-Tracking" },
+    { title: "Qiymet Kalkulyatoru", description: "Sosial media marketinqi", path: "/ManualCalculator" },
+    { title: "AI Kalkulyator", description: "24/7 texniki dəstək xidməti", path: "/AIChatCalculator" },
+    { title: "SEO Xidmeti", description: "Təhlükəsizlik sertifikatları", path: "/SEOServicesPage" },
+    { title: "Mobil Tetbiqlerin Hazirlanmasi", description: "Təhlükəsizlik sertifikatları", path: "/MobileApp" }
+    ,{ title: "Texniki Xidmet", description: "Təhlükəsizlik sertifikatları", path: "/TechnicalService" }
+  ,  { title: "Sosial Media Marketinq", description: "Təhlükəsizlik sertifikatları", path: "/SocialMediaMarketing" }
+
   ];
 
   const sirketItems = [
     { title: "Haqqımızda", description: "Şirkətimiz haqqında məlumat", path: "/About" },
-    { title: "Əlaqə", description: "Bizimlə əlaqə saxlayın", path: "/Contact" },
     { title: "Bloq", description: "Ən son xəbərlər və məqalələr", path: "/CompanyBlog" },
-    { title: "Portfolio", description: "Tamamladığımız layihələr", path: "/Portfolio" }
+    { title: "Portfolio", description: "Tamamladığımız layihələr", path: "/Portfolio" },
+    { title: "Karyera", description: "Açıq vakansiyalar", path: "/Careers" },
+    { title: "Freelance", description: "Müştəri rəyləri və hekayələri", path: "/Freelancer" },
+    { title: "Əlaqə", description: "Bizimlə əlaqə saxlayın", path: "/ContactPage" },
+
   ];
 
   const languages = [

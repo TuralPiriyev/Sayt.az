@@ -1,299 +1,311 @@
 import React, { useState } from 'react';
-import { 
-  ChevronDown, 
-  Server, 
-  Cpu, 
-  HardDrive, 
-  BarChart3, 
-  Shield, 
-  Globe
-} from 'lucide-react';
+import { Server, Cpu, HardDrive, MemoryStick as Memory, Shield, Clock, ChevronDown, ChevronUp, Phone, ArrowRight } from 'lucide-react';
 
 function VPS() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openFaqIndex, setOpenFaqIndex] = useState(null);
 
-const toggleFaq = (index) => {
-  setOpenFaqIndex(openFaqIndex === index ? null : index);
-};
+  const toggleFaq = (index) => {
+    setOpenFaqIndex(openFaqIndex === index ? null : index);
+  };
 
-
-  const vpsFeatures = [
-    { icon: HardDrive, label: 'Disk Storage', value: '20 GB', unit: 'SSD' },
-    { icon: BarChart3, label: 'CPU', value: '2', unit: 'vCore' },
-    { icon: Cpu, label: 'RAM', value: '1 GB', unit: 'DDR4' },
-    { icon: Globe, label: 'Bandwidth', value: '2 TB', unit: 'Monthly' },
-    { icon: Shield, label: 'CentOS', value: '8 GB', unit: 'OS' },
-    { icon: Server, label: 'IPv4', value: '1 IPv4', unit: 'Included' },
+  const vpsSpecs = [
+    { icon: Cpu, label: 'CPU', value: '2x GB', unit: 'vCPU' },
+    { icon: Memory, label: 'RAM', value: '2 GB', unit: 'DDR4' },
+    { icon: HardDrive, label: 'Storage', value: '1 GB', unit: 'NVMe SSD' },
+    { icon: Shield, label: 'Control Panel', value: '3 let bil', unit: 'cPanel' },
+    { icon: Clock, label: 'Backup', value: '2 TB', unit: 'Daily' },
+    { icon: Server, label: 'Network', value: '1 Gbit', unit: 'Uplink' }
   ];
 
   const pricingPlans = [
     {
       name: 'Basic',
-      storage: '20 GB',
-      cpu: '2 Core',
-      bandwidth: '4 GB',
-      traffic: '1 TB',
-      price: 'ƒ24.62'
+      diskSpace: '40 GB',
+      cores: '2 Core',
+      operatingSystem: 'CentOS',
+      bandwidth: '1 TB',
+      price: '42₼',
+      popular: false
     },
     {
       name: 'Standard',
-      storage: '100 GB',
-      cpu: '4 Core',
-      bandwidth: '8 GB',
-      traffic: '2 TB',
-      price: 'ƒ49.99'
+      diskSpace: '100 GB',
+      cores: '3 Core',
+      operatingSystem: 'Ubuntu',
+      bandwidth: '1 TB',
+      price: '64₼',
+      popular: true
     },
     {
       name: 'Premium',
-      storage: '200 GB',
-      cpu: '8 Core',
-      bandwidth: '16 GB',
-      traffic: '5 TB',
-      price: 'ƒ99.99'
+      diskSpace: '240 GB',
+      cores: '4 Core',
+      operatingSystem: 'Windows',
+      bandwidth: '1 TB',
+      price: '82₼',
+      popular: false
     }
   ];
 
-  const faqItems = [
+  const faqData = [
     {
-      question: 'Virtual özel Server (VPS) nədir?',
-      answer: 'VPS, fiziki serverin virtual bölmələrə ayrılması ilə yaradılan virtual serverdir.'
+      question: 'Virtual özəl Server (VPS) nədir?',
+      answer: 'VPS (Virtual Private Server) fiziki serverin virtualizasiya texnologiyası ilə bölünməsindən əmələ gələn virtual serverdir. Hər bir VPS öz resursları və əməliyyat sistemini təmin edir.'
     },
     {
-      question: 'VPS necə işləyir?',
-      answer: 'VPS, hipervizor texnologiyası ilə fiziki serveri bir neçə virtual serverə bölür.'
+      question: 'VPS nece işleyir?',
+      answer: 'VPS hypervisor texnologiyasından istifadə edərək fiziki serveri bir neçə virtual servere bölür. Hər bir virtual server müstəqil şəkildə işləyir və öz resurslarına sahibdir.'
     },
     {
-      question: 'VPS-nin sərnişin idarəsini öyrənə bilərəmmi?',
-      answer: 'Bəli, VPS-i SSH və ya RDP vasitəsilə tam idarə edə bilərsiniz.'
+      question: 'VPS hansı üstünlük təmin edir bizə?',
+      answer: 'VPS sizə dedicated server performansını shared hosting qiymətinə təklif edir. Tam root giriş, elastik resurs idarəetmə və yüksək performans əldə edirsiniz.'
     },
     {
-      question: 'VPS-da hansı sürücüləri quraşdıra bilərəm?',
-      answer: 'Linux və Windows əməliyyat sistemlərini quraşdıra bilərsiniz.'
+      question: 'VPS də hansı əməliyyat sistemləri təklif edilir bizə?',
+      answer: 'Biz CentOS, Ubuntu, Debian, Windows Server və digər məşhur əməliyyat sistemlərini dəstəkləyirik. İstədiyiniz əməliyyat sistemini seçə bilərsiniz.'
     },
     {
-      question: 'VPS giriş necə işə yarayır?',
-      answer: 'VPS-ə SSH (Linux) və ya RDP (Windows) ilə daxil ola bilərsiniz.'
+      question: 'VPS sifarişi nece edilir?',
+      answer: 'Sadəcə olaraq istədiyiniz planı seçin, ödənişi həyata keçirin və bir neçə dəqiqə ərzində VPS hazır olacaq. Avtomatik quraşdırma sistemi mövcuddur.'
     },
     {
-      question: 'VPS texnologiyası təsdiqlənə bilərəmmi?',
-      answer: 'VPS texnologiyası sənaye standartlarına uyğundur və etibarlıdır.'
+      question: 'VPS resurslarını təkmilləşdirmək mümkündür?',
+      answer: 'Bəli, istənilən vaxt VPS resurslarınızı artıra və ya azalda bilərsiniz. Bu proses bir neçə dəqiqə ərzində tamamlanır.'
     },
     {
-      question: 'VPS hosting giriş necə baş verir?',
-      answer: 'VPS hosting premium xidmətdir və pulsuz versiyası mövcud deyil.'
+      question: 'VPS də əlavə hosting xidmətləri fərq edirmi?',
+      answer: 'VPS tam nəzarət və elastiklik təmin edir. Shared hosting-dən fərqli olaraq, öz server mühitinizi idarə edə bilərsiniz.'
     },
     {
-      question: 'VPS hosting dəstək xidməti mövcuddurmu?',
-      answer: '24/7 dəstək xidməti və detallı sənədlər mövcuddur.'
+      question: 'VPS hosting yenə təhlükəsizdir? Qoşa qorunmasındır?',
+      answer: 'Bəli, bütün VPS serverlər firewall, DDoS qorunması və müntəzəm backup-larla təmin edilir. 24/7 monitoring mövcuddur.'
     },
     {
-      question: 'VPS seçmə üçün nə bilməliyəm?',
-      answer: 'İstədiyiniz konfigurasiyanı seçə və istənilən vaxt dəyişə bilərsiniz.'
+      question: 'VPS də backup nece işləyir təkmilləşdirilir?',
+      answer: 'Avtomatik gündəlik backup-lar həyata keçirilir. İstədiyiniz vaxt manual backup yarada və bərpa edə bilərsiniz.'
     },
     {
-      question: 'VPS şəxsində tam nəzarət mümkündürmü?',
-      answer: 'VPS-də tam root girişi və administrativ hüquqlar əldə edirsiniz.'
+      question: 'VPS təşəkkürün texnologiyası nə ilə fərqlənir?',
+      answer: 'Biz ən son KVM virtualizasiya texnologiyasından istifadə edirik ki, maksimum performans və təhlükəsizlik təmin edək.'
     }
   ];
 
-  const blogPosts = [
+  const blogArticles = [
     {
       id: 1,
-      title: 'Bucaq və Hütingin Datalaridir və qətillərinin',
-      category: 'VPS',
+      title: 'Kiber Təhlükəsizlik və Şəxsi Məlumatların Müdafiəsi',
+      excerpt: 'Günümüzdə kiber təhlükələr artdıqca şəxsi məlumatların qorunması daha da vacib olur.',
+      image: 'https://images.pexels.com/photos/5380664/pexels-photo-5380664.jpeg?auto=compress&cs=tinysrgb&w=400',
       date: '15 Noy 2024',
-      image: 'https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg',
-      tags: ['VPS', 'Təhlükəsizlik', 'Server']
+      category: 'Təhlükəsizlik'
     },
     {
       id: 2,
-      title: 'Xibər Təhlükəsizliyin Vebsayt İpucl Maksimizasionə How Görüş',
-      category: 'Cybersecurity',
+      title: 'Veb Sayt Hosting Seçimində Nəzərə Alınacaq Amillər',
+      excerpt: 'Doğru hosting seçimi veb saytınızın performansı üçün çox vacibdir.',
+      image: 'https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=400',
       date: '12 Noy 2024',
-      image: 'https://images.pexels.com/photos/5483077/pexels-photo-5483077.jpeg',
-      tags: ['Cybersecurity', 'Web', 'Təhlükəsizlik']
+      category: 'Hosting'
     },
     {
       id: 3,
-      title: 'SWOT Analizi Nədir?',
-      category: 'Business',
+      title: 'VPS Hosting ilə Performans Artırma',
+      excerpt: 'VPS hosting sayəsində veb saytınızın sürətini və performansını artıra bilərsiniz.',
+      image: 'https://images.pexels.com/photos/1148820/pexels-photo-1148820.jpeg?auto=compress&cs=tinysrgb&w=400',
       date: '10 Noy 2024',
-      image: 'https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg',
-      tags: ['Business', 'Analiz', 'Strateji']
+      category: 'VPS'
     },
     {
       id: 4,
-      title: 'Vətən Region üçün Ağ Sort Hostinqini Qürüntü',
-      category: 'Hosting',
+      title: 'Web Saytınızın Güvənliyini Artırmaq üçün Tövsiyələr',
+      excerpt: 'SSL sertifikatları və güvənlik tədbirləri haqqında ətraflı məlumat.',
+      image: 'https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&cs=tinysrgb&w=400',
       date: '08 Noy 2024',
-      image: 'https://images.pexels.com/photos/4164418/pexels-photo-4164418.jpeg',
-      tags: ['Hosting', 'Performans', 'Server']
+      category: 'Təhlükəsizlik'
     },
     {
       id: 5,
-      title: 'Website Content Strateji: Möglichkeitlərin Content Strateji',
-      category: 'Content',
+      title: 'Cloud Hosting vs VPS: Hansını Seçməlisiniz?',
+      excerpt: 'Cloud hosting və VPS arasındakı fərqləri və hansının sizin üçün uyğun olduğunu öyrənin.',
+      image: 'https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=400',
       date: '05 Noy 2024',
-      image: 'https://images.pexels.com/photos/7688047/pexels-photo-7688047.jpeg',
-      tags: ['Content', 'Marketing', 'SEO']
+      category: 'Hosting'
     },
     {
       id: 6,
-      title: 'Küçək Sürmlərdə üçün ağ səyirən tözand',
-      category: 'Business',
-      date: '03 Noy 2024',
-      image: 'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg',
-      tags: ['SMB', 'Website', 'Growth']
+      title: 'Server İdarəetmə və Monitoring Təcrübələri',
+      excerpt: 'Serverinizi effektiv şəkildə idarə etmək və monitor etmək üçün ən yaxşı təcrübələr.',
+      image: 'https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=400',
+      date: '02 Noy 2024',
+      category: 'Server'
+    },
+    {
+      id: 7,
+      title: 'E-ticarət Saytları üçün Hosting Seçimi',
+      excerpt: 'E-ticarət saytınız üçün ən uyğun hosting həllini necə seçəcəyinizi öyrənin.',
+      image: 'https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=400',
+      date: '30 Okt 2024',
+      category: 'E-ticarət'
+    },
+    {
+      id: 8,
+      title: 'Backup Strategiyaları və Data Qorunması',
+      excerpt: 'Məlumatlarınızı qorumaq üçün effektiv backup strategiyaları.',
+      image: 'https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=400',
+      date: '28 Okt 2024',
+      category: 'Backup'
+    },
+    {
+      id: 9,
+      title: 'Mobile-Friendly Sayt Dizaynının Əhəmiyyəti',
+      excerpt: 'Mobil cihazlar üçün optimallaşdırılmış sayt dizaynının faydaları.',
+      image: 'https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=400',
+      date: '25 Okt 2024',
+      category: 'Dizayn'
     }
   ];
 
   return (
-    <div className="min-h-screen bg-dark-950 text-white">
+    <div className="min-h-screen bg-slate-900 text-white font-sans">
       {/* Hero Section */}
-      <section className="py-16 lg:py-24">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl lg:text-6xl font-bold mb-6">
+      <section id="home" className="pt-24 pb-16 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent">
               VPS Hosting ilə Tam Nəzarəti Ələ Keçirin
             </h1>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto mb-12">
-              Yüksək məhsuldarlıq təmin edən hərtərəfli həllər və 24/7 dəstək xidmətimizlə 
-              bizlərə qatılın. Güvənli və etibarlı hosting həllərindən yararlanın.
+            <p className="text-xl text-slate-400 mb-8 max-w-3xl mx-auto leading-relaxed">
+              Həm istifadəçi həm də təşkilat sistemlərini hosting üçün layiq gözləyici yüksək performanslı VPS həlləri.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto mb-12">
-            {vpsFeatures.map((feature, index) => (
-              <div key={index} className="bg-dark-800 p-6 rounded-xl border border-dark-700 hover:border-primary-500 transition-colors">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <feature.icon className="w-8 h-8 text-primary-500 mb-2" />
-                    <div className="text-2xl font-bold">{feature.value}</div>
-                    <div className="text-gray-400 text-sm">{feature.unit}</div>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-sm text-gray-500">{feature.label}</div>
-                  </div>
+          {/* VPS Specs Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            {vpsSpecs.map((spec, index) => (
+              <div 
+                key={index}
+                className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-6 border border-slate-700 hover:border-violet-500 transition-all duration-300 hover:shadow-lg hover:shadow-violet-500/10 hover:transform hover:scale-105"
+              >
+                <div className="flex items-center justify-between mb-4">
+                  <spec.icon className="h-8 w-8 text-violet-400" />
+                  <span className="text-2xl font-bold text-white">{spec.value}</span>
+                </div>
+                <div className="text-left">
+                  <h3 className="font-semibold text-white mb-1">{spec.label}</h3>
+                  <p className="text-slate-400 text-sm">{spec.unit}</p>
                 </div>
               </div>
             ))}
           </div>
 
           <div className="text-center">
-            <div className="inline-flex items-center bg-dark-800 rounded-xl p-6 border border-dark-700">
-              <div className="mr-8">
-                <div className="text-3xl font-bold">ƒ24.62</div>
-                <div className="text-gray-400 text-sm">aylıq</div>
-              </div>
-              <button className="bg-primary-600 hover:bg-primary-700 px-8 py-3 rounded-lg font-semibold transition-colors">
-                Seçin
+            <div className="flex items-center justify-center mb-6">
+              <span className="text-3xl font-bold mr-4 text-violet-400">₼24.62</span>
+              <button className="px-8 py-3 bg-gradient-to-r from-violet-600 to-violet-700 rounded-lg hover:from-violet-700 hover:to-violet-800 transition-all duration-200 shadow-lg hover:shadow-xl font-semibold">
+                Seç
               </button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Pricing Section */}
-      <section className="py-16 bg-dark-900">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-5xl font-bold mb-4">
+      {/* Pricing Plans */}
+      <section id="plans" className="py-16 bg-slate-800/30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent">
               Mükəmməl VPS Planını seçin
             </h2>
-            <p className="text-xl text-gray-400">
-              Müxtəlif tələblərə uyğun VPS planlarımızdan birini seçin və bizə qoşulun.
+            <p className="text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
+              Sizin və ya şirkətinizin tələbatı üçün mükəmməl olan həll təklif edirik.
             </p>
           </div>
 
-          <div className="bg-dark-800 rounded-2xl overflow-hidden border border-dark-700 max-w-6xl mx-auto">
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead>
-                  <tr className="border-b border-dark-700">
-                    <th className="text-left p-6 font-semibold">Plan</th>
-                    <th className="text-center p-6 font-semibold">Disk Storage</th>
-                    <th className="text-center p-6 font-semibold">vCPU</th>
-                    <th className="text-center p-6 font-semibold">Operation system</th>
-                    <th className="text-center p-6 font-semibold">Traffic</th>
-                    <th className="text-center p-6 font-semibold">Options</th>
+          <div className="overflow-x-auto rounded-xl border border-slate-700">
+            <table className="w-full bg-slate-800/50 backdrop-blur-sm">
+              <thead className="bg-slate-700/50">
+                <tr>
+                  <th className="px-6 py-4 text-left font-semibold text-white">Plan</th>
+                  <th className="px-6 py-4 text-left font-semibold text-white">Disk Həcmi</th>
+                  <th className="px-6 py-4 text-left font-semibold text-white">vCPU</th>
+                  <th className="px-6 py-4 text-left font-semibold text-white">Əməliyyat sistemi</th>
+                  <th className="px-6 py-4 text-left font-semibold text-white">Traffic</th>
+                  <th className="px-6 py-4 text-left font-semibold text-white">Qiymət</th>
+                  <th className="px-6 py-4 text-center font-semibold text-white">Seçim</th>
+                </tr>
+              </thead>
+              <tbody>
+                {pricingPlans.map((plan, index) => (
+                  <tr key={index} className="border-t border-slate-700 hover:bg-slate-700/30 transition-colors duration-200">
+                    <td className="px-6 py-4 font-semibold text-white">{plan.name}</td>
+                    <td className="px-6 py-4 text-slate-300">{plan.diskSpace}</td>
+                    <td className="px-6 py-4 text-slate-300">{plan.cores}</td>
+                    <td className="px-6 py-4 text-slate-300">{plan.operatingSystem}</td>
+                    <td className="px-6 py-4 text-slate-300">{plan.bandwidth}</td>
+                    <td className="px-6 py-4 font-bold text-violet-400">{plan.price}</td>
+                    <td className="px-6 py-4 text-center">
+                      <button className={`px-4 py-2 rounded-lg transition-all duration-200 font-medium ${
+                        plan.popular 
+                          ? 'bg-gradient-to-r from-violet-600 to-violet-700 hover:from-violet-700 hover:to-violet-800 text-white shadow-lg' 
+                          : 'bg-slate-600 hover:bg-slate-500 text-white'
+                      }`}>
+                        Seç
+                      </button>
+                    </td>
                   </tr>
-                </thead>
-                <tbody>
-                  {pricingPlans.map((plan, index) => (
-                    <tr key={index} className="border-b border-dark-700 last:border-b-0 hover:bg-dark-700 transition-colors">
-                      <td className="p-6">
-                        <div className="font-semibold">{plan.name}</div>
-                        <div className="text-2xl font-bold text-primary-500 mt-1">{plan.price}</div>
-                      </td>
-                      <td className="p-6 text-center">{plan.storage}</td>
-                      <td className="p-6 text-center">{plan.cpu}</td>
-                      <td className="p-6 text-center">{plan.bandwidth}</td>
-                      <td className="p-6 text-center">{plan.traffic}</td>
-                      <td className="p-6 text-center">
-                        <button className="bg-primary-600 hover:bg-primary-700 px-6 py-2 rounded-lg transition-colors">
-                          Seçin
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </section>
 
-      {/* Support Section */}
-      <section className="py-16">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold mb-6">
+      {/* Contact CTA */}
+      <section className="py-16 bg-gradient-to-r from-violet-900/20 to-slate-900/20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent">
             Hər hansı bir sualınız var?
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto mb-12">
-            Tex dəstək komandamız sizə kömək etməyə hazırdır. VPS hosting xidmətlərimiz 
-            haqqında hər hansı sualınız varsa, bizimlə əlaqə saxlamaqdan çəkinməyin. 
-            Profesional və sürətli cavablar almaq üçün bizə müracıət edin.
+          <p className="text-xl text-slate-400 mb-8 max-w-2xl mx-auto leading-relaxed">
+            Sizin üçün önəmli olan sualınıza dair ən sürətli cavab almaq üçün bizə müraciət edin. Bizim müxtəlif kanallarımız mövcuddur.
           </p>
-          <div className="flex justify-center space-x-4">
-            <button className="bg-primary-600 hover:bg-primary-700 px-8 py-3 rounded-lg transition-colors">
-              Bizimlə əlaqə
-            </button>
-            <button className="border border-dark-600 hover:border-primary-500 px-8 py-3 rounded-lg transition-colors">
-              Canlı söhbət
-            </button>
-          </div>
+          <button className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-violet-600 to-violet-700 rounded-lg hover:from-violet-700 hover:to-violet-800 transition-all duration-200 shadow-lg hover:shadow-xl font-semibold">
+            <Phone className="h-5 w-5 mr-2" />
+            Əlaqə saxlayın
+          </button>
         </div>
       </section>
 
       {/* FAQ Section */}
-      <section className="py-16 bg-dark-900">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4">
+      <section id="faq" className="py-16 bg-slate-800/30">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent">
               VPS haqqında tez-tez verilən suallar
             </h2>
-            <p className="text-xl text-gray-400">
-              VPS hosting və bizim xidmətlərimiz barədə ən çox verilən suallara cavablar
+            <p className="text-xl text-slate-400">
+              VPS xidməti haqqında suallarınız
             </p>
           </div>
 
-          <div className="max-w-4xl mx-auto">
-            {faqItems.map((item, index) => (
-              <div key={index} className="mb-4">
+          <div className="space-y-4">
+            {faqData.map((faq, index) => (
+              <div key={index} className="bg-slate-800/50 backdrop-blur-sm rounded-xl overflow-hidden border border-slate-700 hover:border-slate-600 transition-colors duration-200">
                 <button
+                  className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-slate-700/30 transition-colors duration-200"
                   onClick={() => toggleFaq(index)}
-                  className="w-full bg-dark-800 border border-dark-700 rounded-xl p-6 text-left hover:border-primary-500 transition-colors flex items-center justify-between"
                 >
-                  <span className="font-semibold">{index + 1}. {item.question}</span>
-                  <ChevronDown 
-                    className={`w-5 h-5 transition-transform ${
-                      openFaqIndex === index ? 'rotate-180' : ''
-                    }`} 
-                  />
+                  <span className="font-semibold text-white pr-4">{index + 1}. {faq.question}</span>
+                  {openFaqIndex === index ? (
+                    <ChevronUp className="h-5 w-5 text-violet-400 flex-shrink-0" />
+                  ) : (
+                    <ChevronDown className="h-5 w-5 text-violet-400 flex-shrink-0" />
+                  )}
                 </button>
                 {openFaqIndex === index && (
-                  <div className="bg-dark-700 border border-dark-600 rounded-b-xl p-6 -mt-2">
-                    <p className="text-gray-300">{item.answer}</p>
+                  <div className="px-6 pb-4 text-slate-300 leading-relaxed animate-in slide-in-from-top duration-200">
+                    {faq.answer}
                   </div>
                 )}
               </div>
@@ -303,43 +315,39 @@ const toggleFaq = (index) => {
       </section>
 
       {/* Blog Section */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4">
-              Bloqumuza daxil olun
+      <section id="blog" className="py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent">
+              Blogumuza daxil olun
             </h2>
-            <p className="text-xl text-gray-400">
-              Ən son texnoloji məqalələr və hosting səhəsindəki yeniliklər haqqında məlumat əldə edin
+            <p className="text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
+              Hosting, VPS və Server İdarəetmə haqqında ən son məqalələrimizi oxuyun
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-            {blogPosts.map((post) => (
-              <article key={post.id} className="bg-dark-800 rounded-xl overflow-hidden border border-dark-700 hover:border-primary-500 transition-colors">
-                <div className="aspect-video overflow-hidden">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {blogArticles.map((article) => (
+              <article key={article.id} className="bg-slate-800/50 backdrop-blur-sm rounded-xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300 border border-slate-700 hover:border-violet-500 hover:shadow-lg hover:shadow-violet-500/10">
+                <div className="aspect-w-16 aspect-h-9">
                   <img 
-                    src={post.image} 
-                    alt={post.title}
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                    src={article.image} 
+                    alt={article.title}
+                    className="w-full h-48 object-cover"
                   />
                 </div>
                 <div className="p-6">
-                  <div className="flex items-center gap-2 mb-3">
-                    {post.tags.map((tag, index) => (
-                      <span key={index} className="bg-primary-600 text-xs px-3 py-1 rounded-full">
-                        {tag}
-                      </span>
-                    ))}
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="px-3 py-1 bg-violet-600 rounded-full text-sm font-medium text-white">
+                      {article.category}
+                    </span>
+                    <span className="text-slate-400 text-sm">{article.date}</span>
                   </div>
-                  <h3 className="text-lg font-semibold mb-3 line-clamp-2 leading-tight">
-                    {post.title}
-                  </h3>
-                  <div className="text-sm text-gray-400 mb-4">
-                    {post.date} • {post.category}
-                  </div>
-                  <button className="text-primary-500 hover:text-primary-400 font-medium">
-                    Oxumağa davam et →
+                  <h3 className="text-xl font-bold mb-3 line-clamp-2 text-white leading-tight">{article.title}</h3>
+                  <p className="text-slate-400 mb-4 line-clamp-3 leading-relaxed">{article.excerpt}</p>
+                  <button className="inline-flex items-center text-violet-400 hover:text-violet-300 transition-colors duration-200 font-medium">
+                    Daha çox oxu
+                    <ArrowRight className="h-4 w-4 ml-2" />
                   </button>
                 </div>
               </article>
@@ -347,8 +355,8 @@ const toggleFaq = (index) => {
           </div>
 
           <div className="text-center mt-12">
-            <button className="bg-primary-600 hover:bg-primary-700 px-8 py-3 rounded-lg transition-colors">
-              Daha böyüyü
+            <button className="px-8 py-3 bg-gradient-to-r from-violet-600 to-violet-700 rounded-lg hover:from-violet-700 hover:to-violet-800 transition-all duration-200 shadow-lg hover:shadow-xl font-semibold">
+              Bütün Məqalələr
             </button>
           </div>
         </div>
