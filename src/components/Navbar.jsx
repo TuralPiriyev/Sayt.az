@@ -366,8 +366,10 @@ const Navbar = () => {
             </button>
 
             {/* Daxil olun */}
-            <button className="hover:text-blue-400 transition-colors">Daxil olun</button>
-          </div>
+         <Link to="/Login"
+      className="inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-500 transition-colors">
+  Daxil olun
+</Link></div>
         </div>
       </div>
 

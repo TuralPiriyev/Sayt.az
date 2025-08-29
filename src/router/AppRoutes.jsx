@@ -27,6 +27,14 @@ import About from '../pages/Company/About';
 import Careers from '../pages/Company/Kareara';
 import Freelancer from '../pages/Company/Freelancer';
 import ContactPage from '../pages/Company/Contact';
+//Authentication
+import Login from '../pages/Authentication/Login';
+import Register from '../pages/Authentication/Register';
+
+//Dashboard
+import DashBoardLayout from '../layout/DashBoardLayOut';
+import DashBoardRoutes from './DashBoardRoutes'; 
+import SidebarSidebar from '../DashBoard/Controller/SidebasSidebar';
 function AppRoutes() {
   return (
     <BrowserRouter>
@@ -61,8 +69,19 @@ function AppRoutes() {
           <Route path = "Careers" element = {<Careers/>}/>
           <Route path = "Freelancer" element = {<Freelancer/>}/>
           <Route path = "ContactPage" element = {<ContactPage/>}/>
+          {/* Authentication Routes */}
+          <Route path = "Login" element = {<Login/>}/>
+          <Route path = "Register" element = {<Register/>}/>
+         
         </Route>
+        <Route path="SidebarSidebar" element={<SidebarSidebar />}>
+           </Route>
+         {/* Dashboard Routes */}
+           <Route path="dashboard/*" element={<DashBoardLayout />}>
+               {DashBoardRoutes()}
+          </Route>
      </Routes>
+     
     </BrowserRouter>
   );
 }
