@@ -238,24 +238,24 @@ function VPS() {
                   <th className="px-6 py-4 text-left font-semibold text-white">Qiymət</th>
                   <th className="px-6 py-4 text-center font-semibold text-white">Seçim</th>
                 </tr>
-                  <h3 className="text-lg font-semibold text-white">{t('vps_plan_features')}</h3>
+              </thead>
               <tbody>
                 {pricingPlans.map((plan, index) => (
                   <tr key={index} className="border-t border-slate-700 hover:bg-slate-700/30 transition-colors duration-200">
                     <td className="px-6 py-4 font-semibold text-white">{plan.name}</td>
-                      {t('order_button')}
+                    <td className="px-6 py-4 text-slate-300">{plan.diskSpace}</td>
                     <td className="px-6 py-4 text-slate-300">{plan.cores}</td>
                     <td className="px-6 py-4 text-slate-300">{plan.operatingSystem}</td>
                     <td className="px-6 py-4 text-slate-300">{plan.bandwidth}</td>
                     <td className="px-6 py-4 font-bold text-violet-400">{plan.price}</td>
                     <td className="px-6 py-4 text-center">
                       <button className={`px-4 py-2 rounded-lg transition-all duration-200 font-medium ${
-                        {t('popular')}
+                        plan.popular
                           ? 'bg-gradient-to-r from-violet-600 to-violet-700 hover:from-violet-700 hover:to-violet-800 text-white shadow-lg' 
                           : 'bg-slate-600 hover:bg-slate-500 text-white'
-                    <h3 className="text-xl font-bold mb-2">{t(`vps_plan_${plan.name.toLowerCase()}`)}</h3>
+                      }`}>
                         Seç
-                      ₼{isYearly ? plan.yearlyPrice : plan.monthlyPrice}/{isYearly ? t('per_year') : t('per_month')}
+                      </button>
                     </td>
                   </tr>
                 ))}
