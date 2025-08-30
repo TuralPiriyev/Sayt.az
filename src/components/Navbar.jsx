@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import { ChevronDown, Bell, Monitor, Globe, Server, Settings, Building2, FileText } from 'lucide-react';
 import { Link } from "react-router-dom";
+import { useLanguage } from '../context/LanguageContext';
+import { useTranslation } from '../translations/translations';
 
 const Navbar = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
+  const { currentLanguage, changeLanguage } = useLanguage();
+  const { t } = useTranslation(currentLanguage);
 
   const toggleDropdown = (dropdown) => {
     setActiveDropdown(activeDropdown === dropdown ? null : dropdown);
@@ -12,50 +16,50 @@ const Navbar = () => {
   const webSaytItems = [
     {
       icon: <Monitor className="w-6 h-6 text-white" />,
-      title: "Saytların hazırlanması",
-      description: "Veb saytların hazırlanması",
+      title: t("Saytların hazırlanması"),
+      description: t("Veb saytların hazırlanması"),
       path: "/MakingTheSite",
       bgColor: "bg-blue-600"
     },
     {
       icon: <Building2 className="w-6 h-6 text-white" />,
-      title: "Hökümat və qeyri-kommersiya saytları",
-      description: "Hökümat və qeyri-kommersiya təşkilatlarını müasir, əlçatan rəqəmsal həllərlə gücləndirimək",
+      title: t("Hökümat və qeyri-kommersiya saytları"),
+      description: t("Hökümat və qeyri-kommersiya təşkilatlarını müasir, əlçatan rəqəmsal həllərlə gücləndirimək"),
       path: "/Government-WebSite",
       bgColor: "bg-purple-600"
     },
     {
       icon: <FileText className="w-6 h-6 text-white" />,
-      title: "Kiçik biznes saytları",
-      description: "Kiçik biznesinizi peşəkar və sərfəli onlayn mövcudluqla gücləndirim",
+      title: t("Kiçik biznes saytları"),
+      description: t("Kiçik biznesinizi peşəkar və sərfəli onlayn mövcudluqla gücləndirim"),
       path: "/SmallBusiness",
       bgColor: "bg-purple-600"
     },
     {
       icon: <Monitor className="w-6 h-6 text-white" />,
-      title: "E-ticarət saytları",
-      description: "Güclü və istifadəsi asan onlayn mağaza ilə satışlarınızı artırın",
+      title: t("E-ticarət saytları"),
+      description: t("Güclü və istifadəsi asan onlayn mağaza ilə satışlarınızı artırın"),
       path: "/ElectronWebSite",
       bgColor: "bg-blue-600"
     },
     {
       icon: <Building2 className="w-6 h-6 text-white" />,
-      title: "Hüquq firma saytı",
-      description: "Hüquq fəaliyyətinizi inkişaf etmiş onlayn mövcudluqla yüksəldin",
+      title: t("Hüquq firma saytı"),
+      description: t("Hüquq fəaliyyətinizi inkişaf etmiş onlayn mövcudluqla yüksəldin"),
       path: "/LawFirm",
       bgColor: "bg-purple-600"
     },
     {
       icon: <FileText className="w-6 h-6 text-white" />,
-      title: "Bloqlar və Şəxsi Vebsaytlar",
-      description: "Fərdi bloq və ya şəxsi vebsayt ilə özünəxas rəqəmsal kimlik yaradın",
+      title: t("Bloqlar və Şəxsi Vebsaytlar"),
+      description: t("Fərdi bloq və ya şəxsi vebsayt ilə özünəxas rəqəmsal kimlik yaradın"),
       path: "/Blog",
       bgColor: "bg-purple-600"
     },
     {
       icon: <Monitor className="w-6 h-6 text-white" />,
-      title: "Əmlak saytları",
-      description: "Əmlak siyahısı və daşınmaz əmlak saytları",
+      title: t("Əmlak saytları"),
+      description: t("Əmlak siyahısı və daşınmaz əmlak saytları"),
       path: "/RealEstate",
       bgColor: "bg-blue-600"
     }
@@ -64,15 +68,15 @@ const Navbar = () => {
   const domenItems = [
     {
       icon: <Globe className="w-6 h-6 text-white" />,
-      title: "Domen",
-      description: "Azərbaycan milli domeni",
+      title: t("Domen"),
+      description: t("Azərbaycan milli domeni"),
       path: "/domen",
       bgColor: "bg-blue-600"
     },
     {
       icon: <Globe className="w-6 h-6 text-white" />,
-      title: ".com domen",
-      description: "Beynəlxalq kommersiya domeni",
+      title: t(".com domen"),
+      description: t("Beynəlxalq kommersiya domeni"),
       path: "/FreeDomen",
       bgColor: "bg-blue-600"
     }
@@ -81,22 +85,22 @@ const Navbar = () => {
   const hostingItems = [
     { 
       icon: <Server className="w-6 h-6 text-white" />,
-      title: "Veb Hosting", 
-      description: "Sürətli və etibarlı veb hosting", 
+      title: t("Veb Hosting"), 
+      description: t("Sürətli və etibarlı veb hosting"), 
       path: "/WebHosting",
       bgColor: "bg-blue-600"
     },
     { 
       icon: <Server className="w-6 h-6 text-white" />,
-      title: "VPS Hosting", 
-      description: "Virtual private server hosting", 
+      title: t("VPS Hosting"), 
+      description: t("Virtual private server hosting"), 
       path: "/VPS",
       bgColor: "bg-blue-600"
     },
     { 
       icon: <Server className="w-6 h-6 text-white" />,
-      title: "Dedicated Server", 
-      description: "Tam ayrılmış server həlləri", 
+      title: t("Dedicated Server"), 
+      description: t("Tam ayrılmış server həlləri"), 
       path: "/ServerHosting",
       bgColor: "bg-blue-600"
     }
@@ -105,50 +109,50 @@ const Navbar = () => {
   const xidmetlerItems = [
     { 
       icon: <Settings className="w-6 h-6 text-white" />,
-      title: "Vebsayt sifarisinizi izleyin", 
-      description: "Axtarış sistemlərində optimallaşdırma", 
+      title: t("Vebsayt sifarisinizi izleyin"), 
+      description: t("Axtarış sistemlərində optimallaşdırma"), 
       path: "#Real-Time-Tracking",
       bgColor: "bg-blue-600"
     },
     { 
       icon: <Settings className="w-6 h-6 text-white" />,
-      title: "Qiymet Kalkulyatoru", 
-      description: "Sosial media marketinqi", 
+      title: t("Qiymet Kalkulyatoru"), 
+      description: t("Sosial media marketinqi"), 
       path: "/ManualCalculator",
       bgColor: "bg-blue-600"
     },
     { 
       icon: <Settings className="w-6 h-6 text-white" />,
-      title: "AI Kalkulyator", 
-      description: "24/7 texniki dəstək xidməti", 
+      title: t("AI Kalkulyator"), 
+      description: t("24/7 texniki dəstək xidməti"), 
       path: "/AIChatCalculator",
       bgColor: "bg-blue-600"
     },
     { 
       icon: <Settings className="w-6 h-6 text-white" />,
-      title: "SEO Xidmeti", 
-      description: "Təhlükəsizlik sertifikatları", 
+      title: t("SEO Xidmeti"), 
+      description: t("Təhlükəsizlik sertifikatları"), 
       path: "/SEOServicesPage",
       bgColor: "bg-blue-600"
     },
     { 
       icon: <Settings className="w-6 h-6 text-white" />,
-      title: "Mobil Tetbiqlerin Hazirlanmasi", 
-      description: "Təhlükəsizlik sertifikatları", 
+      title: t("Mobil Tetbiqlerin Hazirlanmasi"), 
+      description: t("Təhlükəsizlik sertifikatları"), 
       path: "/MobileApp",
       bgColor: "bg-blue-600"
     },
     { 
       icon: <Settings className="w-6 h-6 text-white" />,
-      title: "Texniki Xidmet", 
-      description: "Təhlükəsizlik sertifikatları", 
+      title: t("Texniki Xidmet"), 
+      description: t("Təhlükəsizlik sertifikatları"), 
       path: "/TechnicalService",
       bgColor: "bg-blue-600"
     },
     { 
       icon: <Settings className="w-6 h-6 text-white" />,
-      title: "Sosial Media Marketinq", 
-      description: "Təhlükəsizlik sertifikatları", 
+      title: t("Sosial Media Marketinq"), 
+      description: t("Təhlükəsizlik sertifikatları"), 
       path: "/SocialMediaMarketing",
       bgColor: "bg-blue-600"
     }
@@ -157,43 +161,43 @@ const Navbar = () => {
   const sirketItems = [
     { 
       icon: <Building2 className="w-6 h-6 text-white" />,
-      title: "Haqqımızda", 
-      description: "Şirkətimiz haqqında məlumat", 
+      title: t("Haqqımızda"), 
+      description: t("Şirkətimiz haqqında məlumat"), 
       path: "/About",
       bgColor: "bg-blue-600"
     },
     { 
       icon: <FileText className="w-6 h-6 text-white" />,
-      title: "Bloq", 
-      description: "Ən son xəbərlər və məqalələr", 
+      title: t("Bloq"), 
+      description: t("Ən son xəbərlər və məqalələr"), 
       path: "/CompanyBlog",
       bgColor: "bg-purple-600"
     },
     { 
       icon: <Settings className="w-6 h-6 text-white" />,
-      title: "Portfolio", 
-      description: "Tamamladığımız layihələr", 
+      title: t("Portfolio"), 
+      description: t("Tamamladığımız layihələr"), 
       path: "/Portfolio",
       bgColor: "bg-purple-600"
     },
     { 
       icon: <Building2 className="w-6 h-6 text-white" />,
-      title: "Karyera", 
-      description: "Açıq vakansiyalar", 
+      title: t("Karyera"), 
+      description: t("Açıq vakansiyalar"), 
       path: "/Careers",
       bgColor: "bg-blue-600"
     },
     { 
       icon: <Settings className="w-6 h-6 text-white" />,
-      title: "Freelance", 
-      description: "Müştəri rəyləri və hekayələri", 
+      title: t("Freelance"), 
+      description: t("Müştəri rəyləri və hekayələri"), 
       path: "/Freelancer",
       bgColor: "bg-purple-600"
     },
     { 
       icon: <Building2 className="w-6 h-6 text-white" />,
-      title: "Əlaqə", 
-      description: "Bizimlə əlaqə saxlayın", 
+      title: t("Əlaqə"), 
+      description: t("Bizimlə əlaqə saxlayın"), 
       path: "/ContactPage",
       bgColor: "bg-blue-600"
     }
@@ -225,7 +229,7 @@ const Navbar = () => {
                 onClick={() => toggleDropdown('veb-sayt')}
                 className="flex items-center space-x-1 hover:text-blue-400 transition-colors"
               >
-                <span>Veb sayt</span>
+                <span>{t('Veb sayt')}</span>
                 <ChevronDown className="w-4 h-4" />
               </button>
 
@@ -259,7 +263,7 @@ const Navbar = () => {
                 onClick={() => toggleDropdown('domen')}
                 className="flex items-center space-x-1 hover:text-blue-400 transition-colors"
               >
-                <span>Domen</span>
+                <span>{t('Domen')}</span>
                 <ChevronDown className="w-4 h-4" />
               </button>
 
@@ -293,7 +297,7 @@ const Navbar = () => {
                 onClick={() => toggleDropdown('hosting')}
                 className="flex items-center space-x-1 hover:text-blue-400 transition-colors"
               >
-                <span>Hosting</span>
+                <span>{t('Hosting')}</span>
                 <ChevronDown className="w-4 h-4" />
               </button>
 
@@ -327,7 +331,7 @@ const Navbar = () => {
                 onClick={() => toggleDropdown('xidmetler')}
                 className="flex items-center space-x-1 hover:text-blue-400 transition-colors"
               >
-                <span>Xidmətlər</span>
+                <span>{t('Xidmətlər')}</span>
                 <ChevronDown className="w-4 h-4" />
               </button>
 
@@ -361,7 +365,7 @@ const Navbar = () => {
                 onClick={() => toggleDropdown('sirket')}
                 className="flex items-center space-x-1 hover:text-blue-400 transition-colors"
               >
-                <span>Şirkət</span>
+                <span>{t('Şirkət')}</span>
                 <ChevronDown className="w-4 h-4" />
               </button>
 
@@ -411,7 +415,14 @@ const Navbar = () => {
                 <div className="absolute top-full right-0 mt-2 w-16 bg-slate-800/95 backdrop-blur-md rounded-lg shadow-xl z-50 border border-slate-600/30">
                   <div className="p-2">
                     {languages.map((lang, index) => (
-                      <div key={index} className="flex items-center justify-center p-2 rounded-md hover:bg-slate-700/40 cursor-pointer transition-all duration-200">
+                      <div 
+                        key={index} 
+                        onClick={() => {
+                          changeLanguage(lang.code);
+                          setActiveDropdown(null);
+                        }}
+                        className="flex items-center justify-center p-2 rounded-md hover:bg-slate-700/40 cursor-pointer transition-all duration-200"
+                      >
                         <img src={lang.flag} alt={lang.name} className="w-5 h-3" />
                       </div>
                     ))}
@@ -445,13 +456,13 @@ const Navbar = () => {
 
             {/* Qiymət Təklifi Al Button */}
             <button className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg font-medium transition-colors">
-              Qiymət Təklifi Al
+              {t('Qiymət Təklifi Al')}
             </button>
 
             {/* Daxil olun */}
             <Link to="/Login"
               className="inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-500 transition-colors">
-              Daxil olun
+              {t('Daxil olun')}
             </Link>
           </div>
         </div>
