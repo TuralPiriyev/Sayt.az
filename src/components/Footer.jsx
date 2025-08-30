@@ -1,7 +1,12 @@
 import React from 'react';
 import { Facebook, Instagram, MessageCircle, Linkedin, Youtube, Phone, Mail, MapPin } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+import { useTranslation } from '../translations/translations';
 
 const Footer = () => {
+  const { currentLanguage } = useLanguage();
+  const { t } = useTranslation(currentLanguage);
+
   return (
     <footer className="bg-slate-900 text-white">
       {/* Main Footer Content */}
@@ -16,7 +21,7 @@ const Footer = () => {
             </p>
             
             <div>
-              <h3 className="text-xl font-semibold mb-4">Bizi izləyin :</h3>
+              <h3 className="text-xl font-semibold mb-4">{t('Bizi izləyin :')}</h3>
               <div className="flex space-x-4">
                 <div className="w-12 h-12 bg-gray-700 rounded-full flex items-center justify-center hover:bg-gray-600 transition-colors cursor-pointer">
                   <Facebook className="w-6 h-6" />
@@ -39,21 +44,21 @@ const Footer = () => {
 
           {/* Hosting & Domain Column */}
           <div>
-            <h3 className="text-xl font-bold mb-6">HOSTİNQ & DOMEN</h3>
+            <h3 className="text-xl font-bold mb-6">{t('HOSTİNQ & DOMEN')}</h3>
             <ul className="space-y-3">
               <li>
                 <a href="#" className="text-gray-300 hover:text-white transition-colors">
-                  Domen
+                  {t('Domen')}
                 </a>
               </li>
               <li>
                 <a href="#" className="text-gray-300 hover:text-white transition-colors">
-                  Veb Hosting
+                  {t('Veb Hosting')}
                 </a>
               </li>
               <li>
                 <a href="#" className="text-gray-300 hover:text-white transition-colors">
-                  VPS Hosting
+                  {t('VPS Hosting')}
                 </a>
               </li>
               <li>
@@ -66,26 +71,26 @@ const Footer = () => {
 
           {/* Company Column */}
           <div>
-            <h3 className="text-xl font-bold mb-6">ŞİRKƏT</h3>
+            <h3 className="text-xl font-bold mb-6">{t('ŞİRKƏT')}</h3>
             <ul className="space-y-3">
               <li>
                 <a href="#" className="text-gray-300 hover:text-white transition-colors">
-                  Haqqımızda
+                  {t('Haqqımızda')}
                 </a>
               </li>
               <li>
                 <a href="#" className="text-gray-300 hover:text-white transition-colors">
-                  Əlaqə
+                  {t('Əlaqə')}
                 </a>
               </li>
               <li>
                 <a href="#" className="text-gray-300 hover:text-white transition-colors">
-                  Bloq
+                  {t('Bloq')}
                 </a>
               </li>
               <li>
                 <a href="#" className="text-gray-300 hover:text-white transition-colors">
-                  Portfolio
+                  {t('Portfolio')}
                 </a>
               </li>
             </ul>
@@ -100,14 +105,14 @@ const Footer = () => {
             {/* Phone Numbers */}
             <div>
               <div className="mb-4">
-                <p className="text-gray-400 text-sm mb-1">Domen/Hosting:</p>
+                <p className="text-gray-400 text-sm mb-1">{t('Domen/Hosting:')}</p>
                 <div className="flex items-center text-gray-300">
                   <Phone className="w-4 h-4 mr-2" />
                   <span>+994703300004</span>
                 </div>
               </div>
               <div>
-                <p className="text-gray-400 text-sm mb-1">Sifariş üçün:</p>
+                <p className="text-gray-400 text-sm mb-1">{t('Sifariş üçün:')}</p>
                 <div className="flex items-center text-gray-300">
                   <Phone className="w-4 h-4 mr-2" />
                   <span>+994503300056</span>
@@ -128,7 +133,7 @@ const Footer = () => {
               <div className="flex items-start text-gray-300">
                 <MapPin className="w-4 h-4 mr-2 mt-1 flex-shrink-0" />
                 <span className="text-sm leading-relaxed">
-                  Nərimanov rayonu, Xan Şuşinski küçəsi 49, Green Plaza, 5-ci mərtəbə, 502, Bakı, Azərbaycan
+                  {t('Nərimanov rayonu, Xan Şuşinski küçəsi 49, Green Plaza, 5-ci mərtəbə, 502, Bakı, Azərbaycan')}
                 </span>
               </div>
             </div>
@@ -136,8 +141,8 @@ const Footer = () => {
             {/* Copyright */}
             <div className="lg:text-right">
               <p className="text-gray-400 text-sm">
-                © Copyright 2004-2025 © Sayt.az<br />
-                Bütün Hüquqlar Qorunur.
+                {t('© Copyright 2004-2025 © Sayt.az')}<br />
+                {t('Bütün Hüquqlar Qorunur.')}
               </p>
             </div>
           </div>
