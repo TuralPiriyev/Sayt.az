@@ -21,7 +21,9 @@ const DomainSidebar = () => {
               <h1 className="text-xl font-semibold text-gray-900">Domains</h1>
             </div>
             <h1 className="text-xl font-semibold text-gray-900">{t('dashboard_domains')}</h1>
+            <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-colors">
               Buy
+            </button>
           </div>
         </div>
 
@@ -64,8 +66,7 @@ const DomainSidebar = () => {
                   ))
                 )}
               </tbody>
-          <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-colors">
-            {t('buy_button')}
+            </table>
           </div>
         </div>
       </div>
