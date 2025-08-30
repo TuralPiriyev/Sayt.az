@@ -1,20 +1,24 @@
 import { Bell, Search, ChevronDown, Menu } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
+import { useLanguage } from '../../context/LanguageContext';
+import { useTranslation } from '../../translations/translations';
 
 const HeaderSidebar = ({ activeSection, balance, sidebarOpen, setSidebarOpen }) => {
+  const { currentLanguage } = useLanguage();
+  const { t } = useTranslation(currentLanguage);
   const location = useLocation();
 
   // Route adına görə title təyin edirik
   const getPageTitle = () => {
     const path = location.pathname;
-    if (path.includes('/domains')) return 'Domainlər';
-    if (path.includes('/hosting')) return 'Web Hosting';
+    if (path.includes('/domains')) return t('dashboard_domains');
+    if (path.includes('/hosting')) return t('dashboard_web_hosting');
     if (path.includes('/vps')) return 'VPS';
-    if (path.includes('/resellers')) return 'Resellerlər';
-    if (path.includes('/servers')) return 'Serverlər';
-    if (path.includes('/balance')) return 'Balans';
-    if (path.includes('/settings')) return 'Tənzimlər';
-    return 'Ana Səhifə';
+    if (path.includes('/resellers')) return t('dashboard_resellers');
+    if (path.includes('/servers')) return t('dashboard_servers');
+    if (path.includes('/balance')) return t('dashboard_balance');
+    if (path.includes('/settings')) return t('dashboard_settings');
+    return t('dashboard_home');
   };
 
   return (
@@ -53,14 +57,14 @@ const HeaderSidebar = ({ activeSection, balance, sidebarOpen, setSidebarOpen }) 
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
           <input 
             type="text" 
-            placeholder="Axtar..." 
+            placeholder={t('search_placeholder')}
             className="pl-10 pr-4 py-2 w-64 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 transition-colors"
           />
         </div>
         
         {/* Balance */}
         <div className="flex items-center space-x-2 bg-gray-100 px-3 py-2 rounded-lg">
-          <span className="text-sm text-gray-600 hidden sm:inline">Balans:</span>
+          <span className="text-sm text-gray-600 hidden sm:inline">{t('balance_label')}</span>
           <span className="font-semibold text-green-600">${balance.toFixed(2)}</span>
         </div>
         
@@ -76,8 +80,8 @@ const HeaderSidebar = ({ activeSection, balance, sidebarOpen, setSidebarOpen }) 
             <span className="text-white text-sm font-medium">T</span>
           </div>
           <div className="text-left hidden sm:block">
-            <div className="text-sm font-medium text-gray-900">Tural Xeyyam</div>
-            <div className="text-xs text-gray-500">Premium</div>
+            <div className="text-sm font-medium text-gray-900">{t('user_name')}</div>
+            <div className="text-xs text-gray-500">{t('user_plan')}</div>
           </div>
           <ChevronDown size={16} className="text-gray-400" />
         </div>

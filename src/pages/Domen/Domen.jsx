@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { Search, Check, ChevronDown, ChevronUp, Lock, Zap, Shield, Calendar, Tag, ArrowRight } from 'lucide-react';
+import { useLanguage } from '../../context/LanguageContext';
+import { useTranslation } from '../../translations/translations';
 
 const Domen = () => {
+  const { currentLanguage } = useLanguage();
+  const { t } = useTranslation(currentLanguage);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedDomain, setSelectedDomain] = useState('.az');
   const [openFaq, setOpenFaq] = useState(1);
@@ -111,15 +115,14 @@ const Domen = () => {
       <section className="py-20 px-4 text-center">
         <div className="max-w-4xl mx-auto">
           <p className="text-slate-400 mb-4">
-            .az domain sifarış etməmişdən öncə <span className="text-blue-400 underline cursor-pointer">whois.az</span> saytında yoxlayın
+            {t('whois_check_text')} <span className="text-blue-400 underline cursor-pointer">whois.az</span>
           </p>
           <p className="text-slate-400 mb-8 text-sm">
-            Sayt.az-da .az domenləri yalnız aktiv hosting planı olan müştərilər üçün əlçatandır. Davam etməzdən əvvəl bizdən hosting 
-            aldığınıza əmin olun. <span className="text-blue-400 underline cursor-pointer">Ətraflı oxu...</span>
+            {t('hosting_plan_text')} <span className="text-blue-400 underline cursor-pointer">{t('read_more')}</span>
           </p>
 
           <h1 className="text-4xl md:text-6xl font-bold mb-12 bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent">
-            Domen Adını Axtarın
+            {t('search_domain_title')}
           </h1>
 
           {/* Search Bar */}
@@ -131,7 +134,7 @@ const Domen = () => {
                   type="text"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  placeholder="İstədiyiniz domen adını daxil edin"
+                  placeholder={t('search_placeholder')}
                   className="flex-1 bg-transparent text-white placeholder-slate-400 border-none outline-none text-lg py-4"
                   onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
                 />
@@ -152,7 +155,7 @@ const Domen = () => {
                   disabled={!searchTerm.trim()}
                 >
                   <Search className="h-5 w-5" />
-                  Axtar
+                  {t('search_button')}
                 </button>
               </div>
             </div>
@@ -163,7 +166,7 @@ const Domen = () => {
       {/* Domain Extensions */}
       <section className="py-16 px-4">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12">Domen Uzantısı</h2>
+          <h2 className="text-3xl font-bold text-center mb-12">{t('domain_extension_title')}</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-16">
             {domainExtensions.map((domain) => (
               <div
@@ -182,7 +185,7 @@ const Domen = () => {
                 )}
                 <div className="text-2xl font-bold text-blue-400 mb-2">{domain.ext}</div>
                 <div className="text-3xl font-bold mb-1">₼{domain.price}</div>
-                <div className="text-slate-400 text-sm">il</div>
+                <div className="text-slate-400 text-sm">{t('per_year')}</div>
               </div>
             ))}
           </div>
@@ -193,22 +196,22 @@ const Domen = () => {
               <div className="bg-blue-600/20 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6">
                 <Lock className="h-8 w-8 text-blue-400" />
               </div>
-              <h3 className="text-xl font-semibold mb-4">Məxfilik Qorunması</h3>
-              <p className="text-slate-400">Pulsuz WHOIS məxfilik qorunması hər uyğun domen qeydiyyatına daxildir.</p>
+              <h3 className="text-xl font-semibold mb-4">{t('privacy_protection_title')}</h3>
+              <p className="text-slate-400">{t('privacy_protection_desc')}</p>
             </div>
             <div className="text-center">
               <div className="bg-green-600/20 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6">
                 <Zap className="h-8 w-8 text-green-400" />
               </div>
-              <h3 className="text-xl font-semibold mb-4">Sürətli Çatdırılma</h3>
-              <p className="text-slate-400">Sayt.az-da hər bir müştərinin vaxtını dəyərləndiririk. Komandamız layihəni vad edilən müddətdə təhvil verməyi təmin edir.</p>
+              <h3 className="text-xl font-semibold mb-4">{t('fast_delivery_title')}</h3>
+              <p className="text-slate-400">{t('fast_delivery_desc')}</p>
             </div>
             <div className="text-center">
               <div className="bg-purple-600/20 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6">
                 <Shield className="h-8 w-8 text-purple-400" />
               </div>
-              <h3 className="text-xl font-semibold mb-4">7/24 Dəstək</h3>
-              <p className="text-slate-400">Biz müştərilərimizə 7/24 dəstək təklif edirik. Hər hansı bir sual və ya problem yaranarsa, komandamız həmişə kömək etməyə hazırdır.</p>
+              <h3 className="text-xl font-semibold mb-4">{t('support_24_7_title')}</h3>
+              <p className="text-slate-400">{t('support_24_7_desc')}</p>
             </div>
           </div>
         </div>
@@ -217,16 +220,16 @@ const Domen = () => {
       {/* Pricing Table */}
       <section className="py-16 px-4">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12">Domen uzantısı qiymət siyahısı</h2>
+          <h2 className="text-3xl font-bold text-center mb-12">{t('pricing_table_title')}</h2>
           <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl border border-slate-600 overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead className="bg-slate-700/50">
                   <tr>
-                    <th className="text-left py-4 px-6 font-semibold">Domen</th>
-                    <th className="text-center py-4 px-6 font-semibold">Qeydiyyat</th>
-                    <th className="text-center py-4 px-6 font-semibold">Transfer</th>
-                    <th className="text-center py-4 px-6 font-semibold">Yeniləmə</th>
+                    <th className="text-left py-4 px-6 font-semibold">{t('table_domain')}</th>
+                    <th className="text-center py-4 px-6 font-semibold">{t('table_register')}</th>
+                    <th className="text-center py-4 px-6 font-semibold">{t('table_transfer')}</th>
+                    <th className="text-center py-4 px-6 font-semibold">{t('table_renewal')}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -248,8 +251,8 @@ const Domen = () => {
       {/* FAQ Section */}
       <section className="py-16 px-4 bg-slate-800/30">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-4">Hər hansı bir sualınız var?</h2>
-          <p className="text-slate-400 text-center mb-12">Ən çox soruşulan suallara cavabları tapın</p>
+          <h2 className="text-3xl font-bold text-center mb-4">{t('faq_title')}</h2>
+          <p className="text-slate-400 text-center mb-12">{t('faq_subtitle')}</p>
           
           <div className="space-y-4">
             {faqData.map((faq) => (
@@ -265,7 +268,7 @@ const Domen = () => {
                 >
                   <span className="font-semibold text-lg flex items-center gap-4">
                     <span className="text-blue-400 font-bold text-xl">{faq.id}.</span>
-                    {faq.question}
+                    {t(`faq_q${faq.id}`)}
                   </span>
                   {openFaq === faq.id ? (
                     <ChevronUp className="h-6 w-6 text-slate-400 flex-shrink-0" />
@@ -279,7 +282,7 @@ const Domen = () => {
                     id={`faq-content-${faq.id}`}
                     className="px-8 py-6 border-t border-slate-600 bg-slate-900/30"
                   >
-                    <p className="text-slate-300 leading-relaxed pl-8">{faq.answer}</p>
+                    <p className="text-slate-300 leading-relaxed pl-8">{t(`faq_a${faq.id}`)}</p>
                   </div>
                 )}
               </div>
@@ -292,8 +295,8 @@ const Domen = () => {
       <section className="py-16 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-2">Blogumuza daxil olun</h2>
-            <p className="text-slate-400">Domenlərlə bağlı ən son məqalələr və məsləhətlər</p>
+            <h2 className="text-3xl font-bold mb-2">{t('blog_title')}</h2>
+            <p className="text-slate-400">{t('blog_subtitle')}</p>
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
@@ -306,12 +309,12 @@ const Domen = () => {
                   <div className={`absolute inset-0 bg-gradient-to-br ${post.gradient} opacity-90`}></div>
                   <img 
                     src={post.image} 
-                    alt={post.title}
+                    alt={t(`blog_post${index + 1}_title`)}
                     className="w-full h-full object-cover mix-blend-overlay"
                   />
                   <div className="absolute inset-0 flex items-center justify-center">
                     <h3 className="text-white font-bold text-xl text-center px-6 leading-tight">
-                      {post.title}
+                      {t(`blog_post${index + 1}_title`)}
                     </h3>
                   </div>
                 </div>
@@ -344,7 +347,7 @@ const Domen = () => {
           
           <div className="text-center">
             <button className="bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white px-8 py-4 rounded-2xl font-semibold transition-all duration-200 flex items-center gap-2 mx-auto">
-              Bütün Bloqlar
+              {t('all_blogs')}
               <ArrowRight className="h-5 w-5" />
             </button>
           </div>

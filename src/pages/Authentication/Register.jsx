@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import { Eye, EyeOff, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../../context/LanguageContext';
+import { useTranslation } from '../../translations/translations';
+
 const Register = () => {
+  const { currentLanguage } = useLanguage();
+  const { t } = useTranslation(currentLanguage);
   const [showPassword, setShowPassword] = useState(false);
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('piriyevtural00@gmail.com');
@@ -74,7 +79,7 @@ const Register = () => {
         <div className="bg-gray-800/90 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border border-gray-700/50">
           {/* Title */}
           <h1 className="text-white text-2xl font-medium text-center mb-8">
-            Qeydiyyatdan Keçin
+            {t('register_title')}
           </h1>
 
           {/* Google Sign Up Button */}
@@ -105,7 +110,7 @@ const Register = () => {
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
                 className="w-full px-4 py-3 bg-gray-700/80 rounded-xl text-white placeholder-gray-400 border border-gray-600/50 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
-                placeholder="Ad və soyad"
+                placeholder={t('register_name_placeholder')}
               />
             </div>
 
@@ -116,7 +121,7 @@ const Register = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full px-4 py-3 bg-gray-100 rounded-xl text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
-                placeholder="Email"
+                placeholder={t('register_email_placeholder')}
               />
             </div>
 
@@ -128,7 +133,7 @@ const Register = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className="w-full px-4 py-3 bg-gray-100 rounded-xl text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all pr-12"
-                  placeholder="Şifrə"
+                  placeholder={t('register_password_placeholder')}
                 />
                 <button
                   type="button"
@@ -158,7 +163,7 @@ const Register = () => {
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 className="flex-1 px-4 py-3 bg-gray-700/80 rounded-xl text-white placeholder-gray-400 border border-gray-600/50 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
-                placeholder="Telefon nömrəniz"
+                placeholder={t('register_phone_placeholder')}
               />
             </div>
 
@@ -174,7 +179,7 @@ const Register = () => {
                 <span className={`text-sm font-medium transition-colors duration-500 ${
                   isVerified ? 'text-green-600' : 'text-gray-300'
                 }`}>
-                  {isVerified ? 'Verified ✓' : 'Doğrulamaq üçün sürüşdürün'}
+                  {isVerified ? t('register_verified') : t('register_verification_text')}
                 </span>
               </div>
               
@@ -220,7 +225,7 @@ const Register = () => {
                   </div>
                 </div>
                 <span className="text-gray-400 text-sm leading-tight">
-                  Oxudum və razıyam: <span className="text-blue-400 hover:text-blue-300 underline cursor-pointer">Şərtlər və Qaydalar</span> və <span className="text-blue-400 hover:text-blue-300 underline cursor-pointer">Məxfilik</span>
+                  {t('register_terms_text')} <span className="text-blue-400 hover:text-blue-300 underline cursor-pointer">{t('register_terms_link')}</span> və <span className="text-blue-400 hover:text-blue-300 underline cursor-pointer">{t('register_privacy_link')}</span>
                 </span>
               </label>
             </div>
@@ -230,16 +235,16 @@ const Register = () => {
               type="button"
               className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-medium transition-colors shadow-lg"
             >
-              Qeydiyyat
+              {t('register_button')}
             </button>
           </div>
 
           {/* Login Link */}
           <div className="text-center mt-6">
             <span className="text-gray-400 text-sm">
-              Sizin artıq hesabınız var? 
+              {t('register_have_account')} 
               <Link to = "/Login" className="text-blue-400 hover:text-blue-300 ml-1 transition-colors underline">
-                Hesabınıza daxil olun
+                {t('register_login')}
               </Link>
             </span>
           </div>

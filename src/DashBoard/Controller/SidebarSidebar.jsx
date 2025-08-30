@@ -2,29 +2,34 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Globe, Server, HardDrive, Settings, Users, CreditCard, Home } from 'lucide-react';
+import { useLanguage } from '../../context/LanguageContext';
+import { useTranslation } from '../../translations/translations';
 
 const SidebarSidebar = ({ activeSection, setActiveSection, sidebarOpen = true }) => {
+  const { currentLanguage } = useLanguage();
+  const { t } = useTranslation(currentLanguage);
+  
   // route mapping: item name -> dashboard child path (relative part)
   const routes = {
-    'Ana Səhifə': '',           // will resolve to /dashboard (index)
-    'Domainlər': 'domains',     // /dashboard/domains
-    'Web Hosting': 'hosting',
+    [t('dashboard_home')]: '',           // will resolve to /dashboard (index)
+    [t('dashboard_domains')]: 'domains',     // /dashboard/domains
+    [t('dashboard_web_hosting')]: 'hosting',
     'VPS': 'vps',
-    'Resellerlər': 'resellers',
-    'Serverlər': 'servers',
-    'Balans': 'balance',
-    'Tənzimlər': 'settings'
+    [t('dashboard_resellers')]: 'resellers',
+    [t('dashboard_servers')]: 'servers',
+    [t('dashboard_balance')]: 'balance',
+    [t('dashboard_settings')]: 'settings'
   };
 
   const sidebarItems = [
-    { name: 'Ana Səhifə', icon: Home },
-    { name: 'Domainlər', icon: Globe },
-    { name: 'Web Hosting', icon: Server },
+    { name: t('dashboard_home'), icon: Home },
+    { name: t('dashboard_domains'), icon: Globe },
+    { name: t('dashboard_web_hosting'), icon: Server },
     { name: 'VPS', icon: HardDrive },
-    { name: 'Resellerlər', icon: Users },
-    { name: 'Serverlər', icon: Server },
-    { name: 'Balans', icon: CreditCard },
-    { name: 'Tənzimlər', icon: Settings }
+    { name: t('dashboard_resellers'), icon: Users },
+    { name: t('dashboard_servers'), icon: Server },
+    { name: t('dashboard_balance'), icon: CreditCard },
+    { name: t('dashboard_settings'), icon: Settings }
   ];
 
   return (
@@ -36,7 +41,7 @@ const SidebarSidebar = ({ activeSection, setActiveSection, sidebarOpen = true })
       <div className="p-6 border-b border-slate-700">
         <div className="flex items-center space-x-2">
           <div className="w-8 h-8 bg-blue-600 rounded" />
-          <span className="text-lg font-semibold hidden md:inline">Hosting Panel</span>
+          <span className="text-lg font-semibold hidden md:inline">{t('dashboard_title')}</span>
         </div>
       </div>
 
@@ -72,7 +77,7 @@ const SidebarSidebar = ({ activeSection, setActiveSection, sidebarOpen = true })
       <div className="p-4 border-t border-slate-700">
         <div className="flex items-center space-x-3 text-slate-400">
           <Home size={18} />
-          <span className="text-sm">Əsas səhifə</span>
+          <span className="text-sm">{t('dashboard_main_page')}</span>
         </div>
       </div>
     </aside>

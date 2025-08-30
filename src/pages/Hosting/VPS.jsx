@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { Server, Cpu, HardDrive, MemoryStick as Memory, Shield, Clock, ChevronDown, ChevronUp, Phone, ArrowRight } from 'lucide-react';
+import { useLanguage } from '../../context/LanguageContext';
+import { useTranslation } from '../../translations/translations';
 
 function VPS() {
+  const { currentLanguage } = useLanguage();
+  const { t } = useTranslation(currentLanguage);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openFaqIndex, setOpenFaqIndex] = useState(null);
 
@@ -173,10 +177,10 @@ function VPS() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent">
-              VPS Hosting ilə Tam Nəzarəti Ələ Keçirin
+              {t('vps_title')}
             </h1>
             <p className="text-xl text-slate-400 mb-8 max-w-3xl mx-auto leading-relaxed">
-              Həm istifadəçi həm də təşkilat sistemlərini hosting üçün layiq gözləyici yüksək performanslı VPS həlləri.
+              {t('vps_subtitle')}
             </p>
           </div>
 
@@ -201,9 +205,9 @@ function VPS() {
 
           <div className="text-center">
             <div className="flex items-center justify-center mb-6">
-              <span className="text-3xl font-bold mr-4 text-violet-400">₼24.62</span>
+              <span className="text-3xl font-bold mr-4 text-violet-400">{t('vps_price')}</span>
               <button className="px-8 py-3 bg-gradient-to-r from-violet-600 to-violet-700 rounded-lg hover:from-violet-700 hover:to-violet-800 transition-all duration-200 shadow-lg hover:shadow-xl font-semibold">
-                Seç
+                {t('vps_select')}
               </button>
             </div>
           </div>
@@ -215,10 +219,10 @@ function VPS() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent">
-              Mükəmməl VPS Planını seçin
+              {t('vps_plans_title')}
             </h2>
             <p className="text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
-              Sizin və ya şirkətinizin tələbatı üçün mükəmməl olan həll təklif edirik.
+              {t('vps_plans_subtitle')}
             </p>
           </div>
 
@@ -234,24 +238,24 @@ function VPS() {
                   <th className="px-6 py-4 text-left font-semibold text-white">Qiymət</th>
                   <th className="px-6 py-4 text-center font-semibold text-white">Seçim</th>
                 </tr>
-              </thead>
+                  <h3 className="text-lg font-semibold text-white">{t('vps_plan_features')}</h3>
               <tbody>
                 {pricingPlans.map((plan, index) => (
                   <tr key={index} className="border-t border-slate-700 hover:bg-slate-700/30 transition-colors duration-200">
                     <td className="px-6 py-4 font-semibold text-white">{plan.name}</td>
-                    <td className="px-6 py-4 text-slate-300">{plan.diskSpace}</td>
+                      {t('order_button')}
                     <td className="px-6 py-4 text-slate-300">{plan.cores}</td>
                     <td className="px-6 py-4 text-slate-300">{plan.operatingSystem}</td>
                     <td className="px-6 py-4 text-slate-300">{plan.bandwidth}</td>
                     <td className="px-6 py-4 font-bold text-violet-400">{plan.price}</td>
                     <td className="px-6 py-4 text-center">
                       <button className={`px-4 py-2 rounded-lg transition-all duration-200 font-medium ${
-                        plan.popular 
+                        {t('popular')}
                           ? 'bg-gradient-to-r from-violet-600 to-violet-700 hover:from-violet-700 hover:to-violet-800 text-white shadow-lg' 
                           : 'bg-slate-600 hover:bg-slate-500 text-white'
-                      }`}>
+                    <h3 className="text-xl font-bold mb-2">{t(`vps_plan_${plan.name.toLowerCase()}`)}</h3>
                         Seç
-                      </button>
+                      ₼{isYearly ? plan.yearlyPrice : plan.monthlyPrice}/{isYearly ? t('per_year') : t('per_month')}
                     </td>
                   </tr>
                 ))}
@@ -265,14 +269,14 @@ function VPS() {
       <section className="py-16 bg-gradient-to-r from-violet-900/20 to-slate-900/20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent">
-            Hər hansı bir sualınız var?
+            {t('vps_contact_title')}
           </h2>
           <p className="text-xl text-slate-400 mb-8 max-w-2xl mx-auto leading-relaxed">
-            Sizin üçün önəmli olan sualınıza dair ən sürətli cavab almaq üçün bizə müraciət edin. Bizim müxtəlif kanallarımız mövcuddur.
+            {t('vps_contact_subtitle')}
           </p>
           <button className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-violet-600 to-violet-700 rounded-lg hover:from-violet-700 hover:to-violet-800 transition-all duration-200 shadow-lg hover:shadow-xl font-semibold">
             <Phone className="h-5 w-5 mr-2" />
-            Əlaqə saxlayın
+            {t('vps_contact_button')}
           </button>
         </div>
       </section>
@@ -282,10 +286,10 @@ function VPS() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent">
-              VPS haqqında tez-tez verilən suallar
+              {t('vps_faq_title')}
             </h2>
             <p className="text-xl text-slate-400">
-              VPS xidməti haqqında suallarınız
+              {t('vps_faq_subtitle')}
             </p>
           </div>
 
@@ -319,10 +323,10 @@ function VPS() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent">
-              Blogumuza daxil olun
+              {t('vps_blog_title')}
             </h2>
             <p className="text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
-              Hosting, VPS və Server İdarəetmə haqqında ən son məqalələrimizi oxuyun
+              {t('vps_blog_subtitle')}
             </p>
           </div>
 
@@ -356,7 +360,7 @@ function VPS() {
 
           <div className="text-center mt-12">
             <button className="px-8 py-3 bg-gradient-to-r from-violet-600 to-violet-700 rounded-lg hover:from-violet-700 hover:to-violet-800 transition-all duration-200 shadow-lg hover:shadow-xl font-semibold">
-              Bütün Məqalələr
+              {t('vps_all_articles')}
             </button>
           </div>
         </div>

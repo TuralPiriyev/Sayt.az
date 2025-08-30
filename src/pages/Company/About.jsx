@@ -1,7 +1,12 @@
 import React from 'react';
 import { MessageCircle, Users, BarChart3, Award, Star, Play } from 'lucide-react';
+import { useLanguage } from '../../context/LanguageContext';
+import { useTranslation } from '../../translations/translations';
 
 export default function About() {
+  const { currentLanguage } = useLanguage();
+  const { t } = useTranslation(currentLanguage);
+  
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white">
       {/* Hero Section */}
@@ -9,22 +14,22 @@ export default function About() {
         <div className="text-center max-w-4xl mx-auto">
           <div className="inline-flex items-center bg-blue-500/20 rounded-full px-4 py-2 mb-8 border border-blue-500/30">
             <Award className="w-5 h-5 mr-2 text-blue-400" />
-            <span className="text-blue-300 text-sm">Keyfiyyətlilik</span>
+            <span className="text-blue-300 text-sm">{t('about_quality_badge')}</span>
           </div>
           
           <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent leading-tight">
-            Veb Dizaynda Keyfiyyətin Unvanı
+            {t('about_title')}
           </h1>
           <p className="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed">
-            Hər dizayn daha məna kəsb edən almətlərimiz kimi dəqiq.
+            {t('about_subtitle')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 shadow-2xl transform hover:scale-105">
-              Başlayın
+              {t('about_start_button')}
             </button>
             <button className="bg-transparent border-2 border-gray-600 hover:border-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 flex items-center justify-center gap-2">
               <Play className="w-5 h-5" />
-              Portfolio
+              {t('about_portfolio_button')}
             </button>
           </div>
         </div>
@@ -48,7 +53,7 @@ export default function About() {
             </div>
           </div>
           <div className="absolute -bottom-4 left-8 bg-blue-500 text-white px-4 py-2 rounded-lg text-sm font-medium">
-            Həmrəylik
+            {t('about_teamwork')}
           </div>
         </div>
       </div>
@@ -57,49 +62,49 @@ export default function About() {
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl font-bold mb-8 text-center">
-            20 ildir sizin onlayn uğurunuz üçün çalışırıq
+            {t('about_main_title')}
           </h2>
           
           <div className="prose prose-lg prose-invert max-w-none">
             <p className="text-gray-300 mb-6 text-lg leading-relaxed">
-              Sayt.az - Azərbaycanın ənən veb dizayn studiyası. Daha keçfli digər müqayisə olunar. Saytlar, logo, mobil tətbiqlər və rəqəmsal marketinq sahəsində mütəxəssislik qazanmışdır və hörmətli müştərilərimiz üçürətdə işləmək etirar.
+              {t('about_description1')}
             </p>
 
             <p className="text-gray-300 mb-6 text-lg leading-relaxed">
-              Təcrübə sahibi komandamız veb səhifə dizaynı, e-ticarət həlləri, korporativ kimliklərin işlənməsi və rəqəmsal marketinq sahələrində peşəkar xidmətlər təklif edir. 20 ildən artıq təcrübə və pəsləkar şəhər olunmuş komandanın və təhlifçidir daxil göstərilən və multidimensiasıl bazar üçürətdə dizayn marcanın və təcrübə əsasında işləyir.
+              {t('about_description2')}
             </p>
 
             <p className="text-gray-300 mb-8 text-lg leading-relaxed">
-              Bizim məqsədimiz sadəcə görkəm yaratmaq deyil, həm də funksionallıq təqdim etmək və müştərilərimizin işini inkişaf etdirməkdir. Keyfiyyətli işlərlə müştərilərin etimadını qazanmaq və ən məhsulları verəşdirmə işləmək bizim əsas hədəfimizdir.
+              {t('about_description3')}
             </p>
 
             <div className="grid md:grid-cols-2 gap-8 mb-8">
               <div>
-                <h3 className="text-xl font-semibold mb-4 text-white">Kombinasiyaların və xidmətlər:</h3>
+                <h3 className="text-xl font-semibold mb-4 text-white">{t('about_services_title')}</h3>
                 <ul className="space-y-2 text-gray-300">
                   <li className="flex items-start gap-2">
                     <div className="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
-                    Korporativ veb sayt dizaynı
+                    {t('about_service1')}
                   </li>
                   <li className="flex items-start gap-2">
                     <div className="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
-                    E-ticarət dükanları
+                    {t('about_service2')}
                   </li>
                   <li className="flex items-start gap-2">
                     <div className="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
-                    Logo və brendinq
+                    {t('about_service3')}
                   </li>
                   <li className="flex items-start gap-2">
                     <div className="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
-                    Mobil tətbiq dizaynı
+                    {t('about_service4')}
                   </li>
                   <li className="flex items-start gap-2">
                     <div className="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
-                    Veb səhifə yeniləmələri və təkmilləşdirmə
+                    {t('about_service5')}
                   </li>
                   <li className="flex items-start gap-2">
                     <div className="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
-                    SEO və optimallaşma
+                    {t('about_service6')}
                   </li>
                 </ul>
               </div>

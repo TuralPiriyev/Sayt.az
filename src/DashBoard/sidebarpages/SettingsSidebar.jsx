@@ -1,16 +1,21 @@
 import React from 'react';
 import { ChevronDown } from 'lucide-react';
+import { useLanguage } from '../../context/LanguageContext';
+import { useTranslation } from '../../translations/translations';
 
 const SettingsSidebar = () => {
+  const { currentLanguage } = useLanguage();
+  const { t } = useTranslation(currentLanguage);
+  
   return (
     <div className="bg-white rounded-lg border border-gray-200 shadow-sm">
       {/* Header */}
       <div className="flex items-center justify-between p-6 border-b border-gray-200">
-        <h1 className="text-2xl font-semibold text-gray-900">Settings</h1>
+        <h1 className="text-2xl font-semibold text-gray-900">{t('dashboard_settings')}</h1>
         <div className="flex items-center text-sm text-gray-500">
-          <span className="text-gray-700">Dashboard</span>
+          <span className="text-gray-700">{t('dashboard_breadcrumb')}</span>
           <span className="mx-2">/</span>
-          <span className="text-blue-600">Settings</span>
+          <span className="text-blue-600">{t('settings_breadcrumb')}</span>
         </div>
       </div>
 
@@ -20,7 +25,7 @@ const SettingsSidebar = () => {
           {/* Currency Section */}
           <div>
             <label className="block text-sm font-medium text-gray-600 mb-3">
-              Currency
+              {t('settings_currency')}
             </label>
             <div className="relative">
               <select className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-700 appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
@@ -36,7 +41,7 @@ const SettingsSidebar = () => {
           {/* Language Section */}
           <div>
             <label className="block text-sm font-medium text-gray-600 mb-3">
-              Language
+              {t('settings_language')}
             </label>
             <div className="relative">
               <select className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-700 appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">

@@ -1,7 +1,11 @@
 import React from 'react';
 import { Globe } from 'lucide-react';
+import { useLanguage } from '../../context/LanguageContext';
+import { useTranslation } from '../../translations/translations';
 
 const DomainSidebar = () => {
+  const { currentLanguage } = useLanguage();
+  const { t } = useTranslation(currentLanguage);
   const domains = []; // Empty array for now, can be populated with actual domain data
 
   return (
@@ -16,9 +20,8 @@ const DomainSidebar = () => {
               </div>
               <h1 className="text-xl font-semibold text-gray-900">Domains</h1>
             </div>
-            <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-colors">
+            <h1 className="text-xl font-semibold text-gray-900">{t('dashboard_domains')}</h1>
               Buy
-            </button>
           </div>
         </div>
 
@@ -28,10 +31,10 @@ const DomainSidebar = () => {
             <table className="w-full">
               <thead className="bg-gray-50 border-b">
                 <tr>
-                  <th className="px-6 py-4 text-left text-sm font-medium text-gray-700">Site URL</th>
-                  <th className="px-6 py-4 text-left text-sm font-medium text-gray-700">NS</th>
-                  <th className="px-6 py-4 text-left text-sm font-medium text-gray-700">Expire date</th>
-                  <th className="px-6 py-4 text-left text-sm font-medium text-gray-700">Actions</th>
+                  <th className="px-6 py-4 text-left text-sm font-medium text-gray-700">{t('table_site_url')}</th>
+                  <th className="px-6 py-4 text-left text-sm font-medium text-gray-700">{t('table_ns')}</th>
+                  <th className="px-6 py-4 text-left text-sm font-medium text-gray-700">{t('table_expire_date')}</th>
+                  <th className="px-6 py-4 text-left text-sm font-medium text-gray-700">{t('table_actions')}</th>
                 </tr>
               </thead>
               <tbody>
@@ -42,7 +45,7 @@ const DomainSidebar = () => {
                         <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
                           <Globe className="w-8 h-8 text-gray-400" />
                         </div>
-                        <p className="text-gray-600 font-medium">You don't have any active domain yet</p>
+                        <p className="text-gray-600 font-medium">{t('no_active_domain')}</p>
                       </div>
                     </td>
                   </tr>
@@ -61,7 +64,8 @@ const DomainSidebar = () => {
                   ))
                 )}
               </tbody>
-            </table>
+          <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-colors">
+            {t('buy_button')}
           </div>
         </div>
       </div>

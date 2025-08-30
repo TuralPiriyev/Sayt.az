@@ -1,16 +1,21 @@
 import React from 'react';
 import { CreditCard, DollarSign } from 'lucide-react';
+import { useLanguage } from '../../context/LanguageContext';
+import { useTranslation } from '../../translations/translations';
 
 const BalanceSidebar = () => {
+  const { currentLanguage } = useLanguage();
+  const { t } = useTranslation(currentLanguage);
+  
   return (
     <div className="bg-white rounded-lg border border-gray-200 shadow-sm">
       {/* Header */}
       <div className="flex items-center justify-between p-6 border-b border-gray-200">
-        <h1 className="text-2xl font-semibold text-gray-900">Balance</h1>
+        <h1 className="text-2xl font-semibold text-gray-900">{t('balance_title')}</h1>
         <div className="flex items-center text-sm text-gray-500">
-          <span className="text-gray-700">Dashboard</span>
+          <span className="text-gray-700">{t('dashboard_breadcrumb')}</span>
           <span className="mx-2">/</span>
-          <span className="text-blue-600">Balance</span>
+          <span className="text-blue-600">{t('balance_breadcrumb')}</span>
         </div>
       </div>
 
@@ -18,11 +23,11 @@ const BalanceSidebar = () => {
       <div className="p-6">
         {/* Balance Display */}
         <div className="text-center py-8">
-          <div className="text-sm font-medium text-gray-600 mb-2">Balance</div>
+          <div className="text-sm font-medium text-gray-600 mb-2">{t('balance_title')}</div>
           <div className="text-5xl font-bold text-blue-600 mb-8">$0.00</div>
           
           <div className="text-gray-600 mb-8">
-            You can increase your balance by choosing one of the following tools.
+            {t('balance_subtitle')}
           </div>
 
           {/* Payment Methods */}
@@ -35,7 +40,7 @@ const BalanceSidebar = () => {
                     <CreditCard className="w-4 h-4 text-white" />
                   </div>
                   <div className="text-lg font-semibold text-gray-900">
-                    United<br />Payment
+                    {t('united_payment')}
                   </div>
                 </div>
               </div>
@@ -49,7 +54,7 @@ const BalanceSidebar = () => {
                     <DollarSign className="w-4 h-4 text-white" />
                   </div>
                   <div className="text-lg font-semibold text-gray-900">
-                    payriff
+                    {t('payriff')}
                   </div>
                 </div>
               </div>

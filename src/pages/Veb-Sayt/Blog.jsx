@@ -21,6 +21,8 @@ import {
   BarChart3,
   Image as ImageIcon
 } from 'lucide-react';
+import { useLanguage } from '../../context/LanguageContext';
+import { useTranslation } from '../../translations/translations';
 
 // Reusable Button Component
 const Button = ({ variant = 'primary', size = 'md', children, className = '', disabled = false, ...props }) => {
@@ -173,6 +175,9 @@ const Footer = () => (
 );
 
 const Blog = () => {
+  const { currentLanguage } = useLanguage();
+  const { t } = useTranslation(currentLanguage);
+  
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-pink-900 text-white">
       {/* Navigation */}
@@ -184,7 +189,7 @@ const Blog = () => {
           {/* Main Heading */}
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-8 leading-tight">
             <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-              Bloq və Şəxsi Sayt Yaradılması
+              {t('blog_title')}
             </span>
           </h1>
           
@@ -239,43 +244,43 @@ const Blog = () => {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-              Əsas Xüsusiyyətlər
+              {t('blog_features_title')}
             </h2>
             <p className="text-lg text-gray-300">
-              Uğur üçün lazım olan hər şey
+              {t('blog_features_subtitle')}
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <FeatureCard 
               icon={Palette}
-              title="Xüsusi Bloq Dizaynı"
-              description="Şəxsiyyətinizi əks etdirən unikal və cəlbedici blog dizaynları"
+              title={t('blog_feature1_title')}
+              description={t('blog_feature1_desc')}
             />
             <FeatureCard 
               icon={Database}
-              title="Məzmun İdarəetmə Sistemi"
-              description="Asanlıqla məqalə əlavə edə və idarə edə biləcəyiniz güclü CMS"
+              title={t('blog_feature2_title')}
+              description={t('blog_feature2_desc')}
             />
             <FeatureCard 
               icon={Share2}
-              title="Sosial Media İnteqrasiyası"
-              description="Bütün sosial media platformaları ilə tam inteqrasiya"
+              title={t('blog_feature3_title')}
+              description={t('blog_feature3_desc')}
             />
             <FeatureCard 
               icon={Mail}
-              title="Xəbər Bülleteni Abunəliyi"
-              description="Oxucularınızla əlaqə saxlamaq üçün email marketing sistemi"
+              title={t('blog_feature4_title')}
+              description={t('blog_feature4_desc')}
             />
             <FeatureCard 
               icon={BarChart3}
-              title="Şərh Sistemi"
-              description="Oxucularınızla qarşılıqlı əlaqə üçün müasir şərh sistemi"
+              title={t('blog_feature5_title')}
+              description={t('blog_feature5_desc')}
             />
             <FeatureCard 
               icon={ImageIcon}
-              title="Portfolio Qalereyası"
-              description="İşlərinizi və layihələrinizi nümayiş etdirmək üçün gözəl qalereya"
+              title={t('blog_feature6_title')}
+              description={t('blog_feature6_desc')}
             />
           </div>
         </div>
@@ -288,22 +293,22 @@ const Blog = () => {
             {/* Left Column - Content */}
             <div>
               <h2 className="text-3xl sm:text-4xl font-bold mb-6">
-                Niyə Bizim Həlləri Seçməlisiniz?
+                {t('blog_why_choose_title')}
               </h2>
               <p className="text-lg text-gray-300 mb-8">
-                Sahənizə uyğun geniş veb həllər təqdim edirik
+                {t('blog_why_choose_subtitle')}
               </p>
               
               <div className="space-y-4">
                 {[
-                  'Sahəyə xüsusi təcrübə və ən yaxşı praktikalar',
-                  'Yerli və qlobal üçün SEO optimallaşdırılmış',
-                  'Azərbaycan dilində 24/7 texniki dəstək',
-                  'Standart layihələr üçün 2 həftəlik sürətli təslim',
-                  'İlk ay üçün pulsuz hosting',
-                  'Ömürlük yeniləmələr və texniki xidmət imkanları',
-                  '100% responsive və mobil uyğun',
-                  'Mövcud sistemlərlə inteqrasiya'
+                  t('blog_benefit1'),
+                  t('blog_benefit2'),
+                  t('blog_benefit3'),
+                  t('blog_benefit4'),
+                  t('blog_benefit5'),
+                  t('blog_benefit6'),
+                  t('blog_benefit7'),
+                  t('blog_benefit8')
                 ].map((item, index) => (
                   <div key={index} className="flex items-start space-x-3 group">
                     <div className="flex-shrink-0 mt-0.5">
@@ -343,27 +348,26 @@ const Blog = () => {
       {/* CTA Section */}
       <section id="contact" className="px-4 py-16 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
-          <div className="bg-gradient-to-r from-purple-600/20 to-pink-600/20 backdrop-blur-sm border border-purple-500/30 rounded-3xl p-8 sm:p-12 text-center">
-            <div className="mb-6">
+                label={t('blog_projects')} 
+                subtitle="Projects"
               <div className="w-16 h-16 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <MessageSquare className="w-8 h-8 text-white" />
               </div>
             </div>
-            
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-              Layihənizi Başlatmağa Hazırsınız?
+                label={t('blog_speed')} 
+                subtitle="Speed"
+              {t('blog_cta_title')}
             </h2>
-            <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
-              Bu gün veb sayt layihəniz üçün pulsuz konsultasiya və təklif alın
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              {t('blog_subtitle')}
+              {t('blog_cta_subtitle')}
+                label={t('blog_responsive')} 
+                subtitle="Responsive"
               <Button size="lg" className="w-full sm:w-auto">
-                <Phone className="w-5 h-5 mr-2" />
-                Pulsuz Konsultasiya Alın
+                {t('blog_start_button')}
+                {t('blog_cta_button1')}
               </Button>
-              <Button variant="outline" size="lg" className="w-full sm:w-auto">
-                Komandamızla Əlaqə
+                label={t('blog_support')} 
+                {t('blog_cta_button2')}
               </Button>
             </div>
           </div>

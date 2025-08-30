@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { Eye, EyeOff } from 'lucide-react';
 import { Link } from 'react-router-dom'; 
+import { useLanguage } from '../../context/LanguageContext';
+import { useTranslation } from '../../translations/translations';
 
 const Login = () => {
+  const { currentLanguage } = useLanguage();
+  const { t } = useTranslation(currentLanguage);
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('piriyevtural00@gmail.com');
   const [password, setPassword] = useState('');
@@ -27,7 +31,7 @@ const Login = () => {
         <div className="bg-gray-800/90 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border border-gray-700/50">
           {/* Title */}
           <h1 className="text-white text-2xl font-medium text-center mb-12">
-            Hesabınıza daxil olun
+            {t('login_title')}
           </h1>
 
           {/* Google Sign In Button */}
@@ -58,7 +62,7 @@ const Login = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full px-4 py-3 bg-gray-100 rounded-xl text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
-                placeholder="Email"
+                placeholder={t('login_email_placeholder')}
               />
             </div>
 
@@ -69,7 +73,7 @@ const Login = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="w-full px-4 py-3 bg-gray-100 rounded-xl text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all pr-12"
-                placeholder="Password"
+                placeholder={t('login_password_placeholder')}
               />
               <button
                 type="button"
@@ -86,7 +90,7 @@ const Login = () => {
                 type="button"
                 className="text-blue-400 text-sm hover:text-blue-300 transition-colors"
               >
-                Şifrənizi Xatırlamırsınız? <span className="underline">Şifrəni sıfırlayın</span>
+                {t('login_remember_me')} <span className="underline">{t('login_forgot_password')}</span>
               </button>
             </div>
 
@@ -96,7 +100,7 @@ const Login = () => {
                 to="/SidebarSidebar"
                 className="inline-block bg-gradient-to-r from-blue-800 to-blue-900 hover:from-blue-900 hover:to-gray-900 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-[1.02] border border-blue-700/50"
               >
-                Hesabınıza daxil olun
+                {t('login_button')}
               </Link>
             </div>
           </div>
@@ -104,9 +108,9 @@ const Login = () => {
           {/* Register Link */}
           <div className="text-center mt-8">
             <span className="text-gray-400 text-sm">
-              Halə üzv deyilsiniz? 
+              {t('login_not_member')} 
               <Link to = "/Register" className="text-blue-400 hover:text-blue-300 ml-1 transition-colors underline">
-                Qeydiyyat
+                {t('login_register')}
               </Link>
             </span>
           </div>
@@ -115,9 +119,9 @@ const Login = () => {
         {/* Bottom text */}
         <div className="text-center mt-6">
           <p className="text-gray-500 text-sm">
-            WebsiteCA-ya daxil olmaqla, bizimlə razılaşırsınız{' '}
+            {t('login_terms')}{' '}
             <button className="text-blue-400 hover:text-blue-300 transition-colors underline">
-              Şərtlər və Qaydalar
+              {t('login_terms_link')}
             </button>
           </p>
         </div>

@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { Phone, Mail, MapPin, Facebook, Linkedin, Instagram } from 'lucide-react';
+import { useLanguage } from '../../context/LanguageContext';
+import { useTranslation } from '../../translations/translations';
 
 export default function ContactPage() {
+  const { currentLanguage } = useLanguage();
+  const { t } = useTranslation(currentLanguage);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -54,11 +58,10 @@ export default function ContactPage() {
         {/* Header */}
         <div className="text-center mb-16">
           <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-            Əlaqə
+            {t('contact_title')}
           </h1>
           <p className="text-gray-300 text-lg max-w-2xl mx-auto">
-            Əlaqə saxlamaq istəyirsiniz? Sizdən eşitmək istərdik. Aşağıdakı forma, telefon, e-poçt 
-            vasitəsindən istifadə edərək bizimlə əlaqə saxlaya bilərsiniz.
+            {t('contact_subtitle')}
           </p>
         </div>
 
@@ -87,7 +90,7 @@ export default function ContactPage() {
                     <Phone size={24} />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-lg">Domen/Hosting</h3>
+                    <h3 className="font-semibold text-lg">{t('contact_domain_hosting')}</h3>
                     <p className="text-blue-300">+994703300004</p>
                   </div>
                 </div>
@@ -99,7 +102,7 @@ export default function ContactPage() {
                     <Phone size={24} />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-lg">Sifariş üçün</h3>
+                    <h3 className="font-semibold text-lg">{t('contact_order')}</h3>
                     <p className="text-purple-300">+994503300056</p>
                   </div>
                 </div>
@@ -111,7 +114,7 @@ export default function ContactPage() {
                     <Mail size={24} />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-lg">Elektron poçt ünvanınız nədir?</h3>
+                    <h3 className="font-semibold text-lg">{t('contact_email_question')}</h3>
                     <p className="text-green-300">support@sayt.az</p>
                   </div>
                 </div>
@@ -123,8 +126,8 @@ export default function ContactPage() {
                     <MapPin size={24} />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-lg">Bizim ofisimiz harada yerləşir?</h3>
-                    <p className="text-orange-300">Nərimanov rayonu, Xan Şuşinski küçəsi 49, Green Plaza, 5-ci mərtəbə, 502, Bakı, Azərbaycan</p>
+                    <h3 className="font-semibold text-lg">{t('contact_office_location')}</h3>
+                    <p className="text-orange-300">{t('contact_office_address')}</p>
                   </div>
                 </div>
               </div>
@@ -132,7 +135,7 @@ export default function ContactPage() {
 
             {/* Social Media */}
             <div>
-              <h3 className="text-xl font-semibold mb-4">Sosial mediada bizi izləyin</h3>
+              <h3 className="text-xl font-semibold mb-4">{t('contact_social_media')}</h3>
               <div className="flex gap-4">
                 <a href="#" className="bg-blue-600 p-3 rounded-lg hover:bg-blue-700 transition-colors">
                   <Facebook size={24} />
@@ -149,9 +152,9 @@ export default function ContactPage() {
 
           {/* Right Side - Contact Form */}
           <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20">
-            <h2 className="text-2xl font-bold mb-6 text-center">Əlaqə qurun</h2>
+            <h2 className="text-2xl font-bold mb-6 text-center">{t('contact_form_title')}</h2>
             <p className="text-gray-300 text-center mb-8">
-              Suallarınızı cavablamaq və sizə kömək etmək üçün buradayıq
+              {t('contact_form_subtitle')}
             </p>
 
             <div className="space-y-6">
@@ -161,7 +164,7 @@ export default function ContactPage() {
                   name="name"
                   value={formData.name}
                   onChange={handleInputChange}
-                  placeholder="Ad və soyad"
+                  placeholder={t('contact_name_placeholder')}
                   className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:bg-white/15 transition-all"
                 />
               </div>
@@ -172,7 +175,7 @@ export default function ContactPage() {
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  placeholder="Elektron poçt ünvanı"
+                  placeholder={t('contact_email_placeholder')}
                   className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:bg-white/15 transition-all"
                 />
               </div>
@@ -186,7 +189,7 @@ export default function ContactPage() {
                   name="phone"
                   value={formData.phone}
                   onChange={handleInputChange}
-                  placeholder="Telefon nömrəniz"
+                  placeholder={t('contact_phone_placeholder')}
                   className="flex-1 bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:bg-white/15 transition-all"
                 />
               </div>
@@ -198,11 +201,11 @@ export default function ContactPage() {
                   onChange={handleInputChange}
                   className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue-400 focus:bg-white/15 transition-all"
                 >
-                  <option value="" className="bg-slate-800">Mövzunu seçin</option>
-                  <option value="hosting" className="bg-slate-800">Hosting</option>
-                  <option value="domain" className="bg-slate-800">Domain</option>
-                  <option value="support" className="bg-slate-800">Texniki Dəstək</option>
-                  <option value="other" className="bg-slate-800">Digər</option>
+                  <option value="" className="bg-slate-800">{t('contact_subject_placeholder')}</option>
+                  <option value="hosting" className="bg-slate-800">{t('contact_subject_hosting')}</option>
+                  <option value="domain" className="bg-slate-800">{t('contact_subject_domain')}</option>
+                  <option value="support" className="bg-slate-800">{t('contact_subject_support')}</option>
+                  <option value="other" className="bg-slate-800">{t('contact_subject_other')}</option>
                 </select>
               </div>
 
@@ -211,7 +214,7 @@ export default function ContactPage() {
                   name="message"
                   value={formData.message}
                   onChange={handleInputChange}
-                  placeholder="Mesajınızı bura yazın"
+                  placeholder={t('contact_message_placeholder')}
                   rows="5"
                   className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:bg-white/15 transition-all resize-none"
                 ></textarea>
@@ -221,7 +224,7 @@ export default function ContactPage() {
                 onClick={handleSubmit}
                 className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300 transform hover:scale-105"
               >
-                Göndər
+                {t('contact_send_button')}
               </button>
             </div>
           </div>
@@ -237,8 +240,8 @@ export default function ContactPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
               </svg>
             </div>
-            <h3 className="text-2xl font-bold text-white mb-2">Uğurla göndərildi!</h3>
-            <p className="text-gray-300">Mesajınız uğurla göndərildi. Tezliklə sizinlə əlaqə saxlayacağıq.</p>
+            <h3 className="text-2xl font-bold text-white mb-2">{t('contact_success_title')}</h3>
+            <p className="text-gray-300">{t('contact_success_message')}</p>
           </div>
         </div>
       )}
