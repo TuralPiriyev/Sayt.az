@@ -1,1 +1,35 @@
 @import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Dropdown scrollbar stilləri */
+@layer utilities {
+  .dropdown-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(71 85 105) rgb(30 41 59);
+  }
+
+  .dropdown-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .dropdown-scrollbar::-webkit-scrollbar-track {
+    background: rgb(30 41 59);
+    border-radius: 3px;
+  }
+
+  .dropdown-scrollbar::-webkit-scrollbar-thumb {
+    background: rgb(71 85 105);
+    border-radius: 3px;
+    transition: background-color 0.2s ease;
+  }
+
+  .dropdown-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgb(100 116 139);
+  }
+
+  .dropdown-scrollbar::-webkit-scrollbar-corner {
+    background: rgb(30 41 59);
+  }
+}

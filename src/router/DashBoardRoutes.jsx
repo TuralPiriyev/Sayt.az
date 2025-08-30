@@ -11,7 +11,8 @@ import HostingSidebar from '../DashBoard/sidebarpages/HostingSidebar';
 import VpsSidebar from '../DashBoard/sidebarpages/VpsSidebar';
 import BalanceSidebar from '../DashBoard/sidebarpages/BalanceSidebar';
 import SettingsSidebar from '../DashBoard/sidebarpages/SettingsSidebar';
-
+import ResellerSidebar from '../DashBoard/sidebarpages/ResellerSidebar';
+import ServerSidebar from '../DashBoard/sidebarpages/ServerSidebar';
 const DashBoardRoutes = () => {
   return (
     <>
@@ -25,6 +26,8 @@ const DashBoardRoutes = () => {
       <Route path="vps" element={<VpsSidebar />} />
       <Route path="balance" element={<BalanceSidebar />} />
       <Route path="settings" element={<SettingsSidebar />} />
+      <Route path="resellers" element={<ResellerSidebar />} />
+      <Route path="servers" element={<ServerSidebar />} />
 
       {/* fallback for unknown dashboard child paths */}
       <Route path="*" element={<DashboardSidebar />} />

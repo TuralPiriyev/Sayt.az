@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronDown, Bell } from 'lucide-react';
+import { ChevronDown, Bell, Monitor, Globe, Server, Settings, Building2, FileText } from 'lucide-react';
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
@@ -11,138 +11,192 @@ const Navbar = () => {
 
   const webSaytItems = [
     {
-      icon: (
-        <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center">
-          <div className="w-6 h-4 border-2 border-white rounded flex">
-            <div className="w-2 h-2 bg-white rounded-full m-auto"></div>
-          </div>
-        </div>
-      ),
+      icon: <Monitor className="w-6 h-6 text-white" />,
       title: "Saytların hazırlanması",
       description: "Veb saytların hazırlanması",
-      path: "/MakingTheSite"
+      path: "/MakingTheSite",
+      bgColor: "bg-blue-600"
     },
     {
-      icon: (
-        <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center">
-          <div className="w-6 h-4 border-2 border-white rounded flex">
-            <div className="flex-1 border-r border-white"></div>
-            <div className="flex-1"></div>
-          </div>
-        </div>
-      ),
+      icon: <Building2 className="w-6 h-6 text-white" />,
       title: "Hökümat və qeyri-kommersiya saytları",
       description: "Hökümat və qeyri-kommersiya təşkilatlarını müasir, əlçatan rəqəmsal həllərlə gücləndirimək",
-      path: "/Government-WebSite"
+      path: "/Government-WebSite",
+      bgColor: "bg-purple-600"
     },
     {
-      icon: (
-        <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center">
-          <div className="w-6 h-4 bg-white rounded-sm flex items-center justify-center">
-            <div className="w-3 h-2 bg-blue-600 rounded-sm"></div>
-          </div>
-        </div>
-      ),
+      icon: <FileText className="w-6 h-6 text-white" />,
       title: "Kiçik biznes saytları",
       description: "Kiçik biznesinizi peşəkar və sərfəli onlayn mövcudluqla gücləndirim",
-      path: "/SmallBusiness"
+      path: "/SmallBusiness",
+      bgColor: "bg-purple-600"
     },
     {
-      icon: (
-        <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center">
-          <div className="w-6 h-4 border-2 border-white rounded flex items-center justify-center">
-            <div className="w-4 h-2 border border-white rounded-sm flex">
-              <div className="w-1 h-1 bg-white rounded-full m-auto"></div>
-            </div>
-          </div>
-        </div>
-      ),
+      icon: <Monitor className="w-6 h-6 text-white" />,
       title: "E-ticarət saytları",
       description: "Güclü və istifadəsi asan onlayn mağaza ilə satışlarınızı artırın",
-      path: "/ElectronWebSite"
+      path: "/ElectronWebSite",
+      bgColor: "bg-blue-600"
     },
     {
-      icon: (
-        <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center">
-          <div className="w-6 h-4 border-2 border-white rounded flex flex-col">
-            <div className="flex-1 border-b border-white flex items-center justify-center">
-              <div className="w-2 h-0.5 bg-white"></div>
-            </div>
-            <div className="flex-1 flex items-center justify-center">
-              <div className="w-2 h-0.5 bg-white"></div>
-            </div>
-          </div>
-        </div>
-      ),
+      icon: <Building2 className="w-6 h-6 text-white" />,
       title: "Hüquq firma saytı",
       description: "Hüquq fəaliyyətinizi inkişaf etmiş onlayn mövcudluqla yüksəldin",
-      path: "/LawFirm"
+      path: "/LawFirm",
+      bgColor: "bg-purple-600"
     },
     {
-      icon: (
-        <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center">
-          <div className="w-6 h-4 border-2 border-white rounded flex flex-col">
-            <div className="w-full h-0.5 bg-white mt-1"></div>
-            <div className="w-full h-0.5 bg-white mt-0.5"></div>
-            <div className="w-full h-0.5 bg-white mt-0.5"></div>
-          </div>
-        </div>
-      ),
+      icon: <FileText className="w-6 h-6 text-white" />,
       title: "Bloqlar və Şəxsi Vebsaytlar",
       description: "Fərdi bloq və ya şəxsi vebsayt ilə özünəxas rəqəmsal kimlik yaradın",
-      path: "/Blog"
+      path: "/Blog",
+      bgColor: "bg-purple-600"
+    },
+    {
+      icon: <Monitor className="w-6 h-6 text-white" />,
+      title: "Əmlak saytları",
+      description: "Əmlak siyahısı və daşınmaz əmlak saytları",
+      path: "/RealEstate",
+      bgColor: "bg-blue-600"
     }
   ];
 
   const domenItems = [
     {
-      icon: (
-        <div className="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center">
-          <div className="w-6 h-4 border-2 border-white rounded"></div>
-        </div>
-      ),
+      icon: <Globe className="w-6 h-6 text-white" />,
       title: "Domen",
       description: "Azərbaycan milli domeni",
-      path: "/domen"
+      path: "/domen",
+      bgColor: "bg-blue-600"
     },
     {
-      icon: (
-        <div className="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center">
-          <div className="w-6 h-4 border-2 border-white rounded"></div>
-        </div>
-      ),
+      icon: <Globe className="w-6 h-6 text-white" />,
       title: ".com domen",
       description: "Beynəlxalq kommersiya domeni",
-      path: "/FreeDomen"
+      path: "/FreeDomen",
+      bgColor: "bg-blue-600"
     }
   ];
 
   const hostingItems = [
-    { title: "Veb Hosting", description: "Sürətli və etibarlı veb hosting", path: "/WebHosting" },
-    { title: "VPS Hosting", description: "Virtual private server hosting", path: "/VPS" },
-    { title: "Dedicated Server", description: "Tam ayrılmış server həlləri", path: "/ServerHosting" },
-    
+    { 
+      icon: <Server className="w-6 h-6 text-white" />,
+      title: "Veb Hosting", 
+      description: "Sürətli və etibarlı veb hosting", 
+      path: "/WebHosting",
+      bgColor: "bg-blue-600"
+    },
+    { 
+      icon: <Server className="w-6 h-6 text-white" />,
+      title: "VPS Hosting", 
+      description: "Virtual private server hosting", 
+      path: "/VPS",
+      bgColor: "bg-blue-600"
+    },
+    { 
+      icon: <Server className="w-6 h-6 text-white" />,
+      title: "Dedicated Server", 
+      description: "Tam ayrılmış server həlləri", 
+      path: "/ServerHosting",
+      bgColor: "bg-blue-600"
+    }
   ];
 
   const xidmetlerItems = [
-    { title: "Vebsayt sifarisinizi izleyin", description: "Axtarış sistemlərində optimallaşdırma", path: "#Real-Time-Tracking" },
-    { title: "Qiymet Kalkulyatoru", description: "Sosial media marketinqi", path: "/ManualCalculator" },
-    { title: "AI Kalkulyator", description: "24/7 texniki dəstək xidməti", path: "/AIChatCalculator" },
-    { title: "SEO Xidmeti", description: "Təhlükəsizlik sertifikatları", path: "/SEOServicesPage" },
-    { title: "Mobil Tetbiqlerin Hazirlanmasi", description: "Təhlükəsizlik sertifikatları", path: "/MobileApp" }
-    ,{ title: "Texniki Xidmet", description: "Təhlükəsizlik sertifikatları", path: "/TechnicalService" }
-  ,  { title: "Sosial Media Marketinq", description: "Təhlükəsizlik sertifikatları", path: "/SocialMediaMarketing" }
-
+    { 
+      icon: <Settings className="w-6 h-6 text-white" />,
+      title: "Vebsayt sifarisinizi izleyin", 
+      description: "Axtarış sistemlərində optimallaşdırma", 
+      path: "#Real-Time-Tracking",
+      bgColor: "bg-blue-600"
+    },
+    { 
+      icon: <Settings className="w-6 h-6 text-white" />,
+      title: "Qiymet Kalkulyatoru", 
+      description: "Sosial media marketinqi", 
+      path: "/ManualCalculator",
+      bgColor: "bg-blue-600"
+    },
+    { 
+      icon: <Settings className="w-6 h-6 text-white" />,
+      title: "AI Kalkulyator", 
+      description: "24/7 texniki dəstək xidməti", 
+      path: "/AIChatCalculator",
+      bgColor: "bg-blue-600"
+    },
+    { 
+      icon: <Settings className="w-6 h-6 text-white" />,
+      title: "SEO Xidmeti", 
+      description: "Təhlükəsizlik sertifikatları", 
+      path: "/SEOServicesPage",
+      bgColor: "bg-blue-600"
+    },
+    { 
+      icon: <Settings className="w-6 h-6 text-white" />,
+      title: "Mobil Tetbiqlerin Hazirlanmasi", 
+      description: "Təhlükəsizlik sertifikatları", 
+      path: "/MobileApp",
+      bgColor: "bg-blue-600"
+    },
+    { 
+      icon: <Settings className="w-6 h-6 text-white" />,
+      title: "Texniki Xidmet", 
+      description: "Təhlükəsizlik sertifikatları", 
+      path: "/TechnicalService",
+      bgColor: "bg-blue-600"
+    },
+    { 
+      icon: <Settings className="w-6 h-6 text-white" />,
+      title: "Sosial Media Marketinq", 
+      description: "Təhlükəsizlik sertifikatları", 
+      path: "/SocialMediaMarketing",
+      bgColor: "bg-blue-600"
+    }
   ];
 
   const sirketItems = [
-    { title: "Haqqımızda", description: "Şirkətimiz haqqında məlumat", path: "/About" },
-    { title: "Bloq", description: "Ən son xəbərlər və məqalələr", path: "/CompanyBlog" },
-    { title: "Portfolio", description: "Tamamladığımız layihələr", path: "/Portfolio" },
-    { title: "Karyera", description: "Açıq vakansiyalar", path: "/Careers" },
-    { title: "Freelance", description: "Müştəri rəyləri və hekayələri", path: "/Freelancer" },
-    { title: "Əlaqə", description: "Bizimlə əlaqə saxlayın", path: "/ContactPage" },
-
+    { 
+      icon: <Building2 className="w-6 h-6 text-white" />,
+      title: "Haqqımızda", 
+      description: "Şirkətimiz haqqında məlumat", 
+      path: "/About",
+      bgColor: "bg-blue-600"
+    },
+    { 
+      icon: <FileText className="w-6 h-6 text-white" />,
+      title: "Bloq", 
+      description: "Ən son xəbərlər və məqalələr", 
+      path: "/CompanyBlog",
+      bgColor: "bg-purple-600"
+    },
+    { 
+      icon: <Settings className="w-6 h-6 text-white" />,
+      title: "Portfolio", 
+      description: "Tamamladığımız layihələr", 
+      path: "/Portfolio",
+      bgColor: "bg-purple-600"
+    },
+    { 
+      icon: <Building2 className="w-6 h-6 text-white" />,
+      title: "Karyera", 
+      description: "Açıq vakansiyalar", 
+      path: "/Careers",
+      bgColor: "bg-blue-600"
+    },
+    { 
+      icon: <Settings className="w-6 h-6 text-white" />,
+      title: "Freelance", 
+      description: "Müştəri rəyləri və hekayələri", 
+      path: "/Freelancer",
+      bgColor: "bg-purple-600"
+    },
+    { 
+      icon: <Building2 className="w-6 h-6 text-white" />,
+      title: "Əlaqə", 
+      description: "Bizimlə əlaqə saxlayın", 
+      path: "/ContactPage",
+      bgColor: "bg-blue-600"
+    }
   ];
 
   const languages = [
@@ -176,14 +230,21 @@ const Navbar = () => {
               </button>
 
               {activeDropdown === 'veb-sayt' && (
-                <div className="absolute top-full left-0 mt-2 w-96 bg-slate-800 rounded-lg shadow-xl z-50 border border-slate-700">
-                  <div className="p-4 space-y-2">
+                <div className="absolute top-full left-0 mt-2 w-80 bg-slate-800/95 backdrop-blur-md rounded-xl shadow-xl z-50 border border-slate-600/30 max-h-80 overflow-y-auto dropdown-scrollbar">
+                  <div className="p-4 space-y-1">
                     {webSaytItems.map((item, index) => (
-                      <Link key={index} to={item.path} className="flex items-start space-x-3 p-3 rounded-lg hover:bg-slate-700 cursor-pointer transition-colors">
-                        {item.icon}
-                        <div>
-                          <h3 className="font-semibold text-white mb-1">{item.title}</h3>
-                          <p className="text-sm text-gray-400">{item.description}</p>
+                      <Link 
+                        key={index} 
+                        to={item.path} 
+                        className="flex items-start space-x-3 p-3 rounded-lg hover:bg-slate-700/40 cursor-pointer transition-all duration-200 group"
+                        onClick={() => setActiveDropdown(null)}
+                      >
+                        <div className={`w-10 h-10 ${item.bgColor} rounded-lg flex items-center justify-center shadow-md group-hover:scale-105 transition-transform duration-200`}>
+                          {item.icon}
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="font-medium text-white mb-0.5 group-hover:text-blue-400 transition-colors text-sm">{item.title}</h3>
+                          <p className="text-xs text-slate-400 leading-relaxed">{item.description}</p>
                         </div>
                       </Link>
                     ))}
@@ -203,14 +264,21 @@ const Navbar = () => {
               </button>
 
               {activeDropdown === 'domen' && (
-                <div className="absolute top-full left-0 mt-2 w-80 bg-slate-800 rounded-lg shadow-xl z-50 border border-slate-700">
-                  <div className="p-4 space-y-2">
+                <div className="absolute top-full left-0 mt-2 w-72 bg-slate-800/95 backdrop-blur-md rounded-xl shadow-xl z-50 border border-slate-600/30 max-h-60 overflow-y-auto dropdown-scrollbar">
+                  <div className="p-4 space-y-1">
                     {domenItems.map((item, index) => (
-                      <Link key={index} to={item.path} className="flex items-start space-x-3 p-3 rounded-lg hover:bg-slate-700 cursor-pointer transition-colors">
-                        {item.icon}
-                        <div>
-                          <h3 className="font-semibold text-white mb-1">{item.title}</h3>
-                          <p className="text-sm text-gray-400">{item.description}</p>
+                      <Link 
+                        key={index} 
+                        to={item.path} 
+                        className="flex items-start space-x-3 p-3 rounded-lg hover:bg-slate-700/40 cursor-pointer transition-all duration-200 group"
+                        onClick={() => setActiveDropdown(null)}
+                      >
+                        <div className={`w-10 h-10 ${item.bgColor} rounded-lg flex items-center justify-center shadow-md group-hover:scale-105 transition-transform duration-200`}>
+                          {item.icon}
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="font-medium text-white mb-0.5 group-hover:text-blue-400 transition-colors text-sm">{item.title}</h3>
+                          <p className="text-xs text-slate-400 leading-relaxed">{item.description}</p>
                         </div>
                       </Link>
                     ))}
@@ -230,16 +298,21 @@ const Navbar = () => {
               </button>
 
               {activeDropdown === 'hosting' && (
-                <div className="absolute top-full left-0 mt-2 w-80 bg-slate-800 rounded-lg shadow-xl z-50 border border-slate-700">
-                  <div className="p-4 space-y-2">
+                <div className="absolute top-full left-0 mt-2 w-72 bg-slate-800/95 backdrop-blur-md rounded-xl shadow-xl z-50 border border-slate-600/30 max-h-60 overflow-y-auto dropdown-scrollbar">
+                  <div className="p-4 space-y-1">
                     {hostingItems.map((item, index) => (
-                      <Link key={index} to={item.path} className="flex items-start space-x-3 p-3 rounded-lg hover:bg-slate-700 cursor-pointer transition-colors">
-                        <div className="w-12 h-12 bg-purple-600 rounded-lg flex items-center justify-center">
-                          <div className="w-6 h-4 border-2 border-white rounded"></div>
+                      <Link 
+                        key={index} 
+                        to={item.path} 
+                        className="flex items-start space-x-3 p-3 rounded-lg hover:bg-slate-700/40 cursor-pointer transition-all duration-200 group"
+                        onClick={() => setActiveDropdown(null)}
+                      >
+                        <div className={`w-10 h-10 ${item.bgColor} rounded-lg flex items-center justify-center shadow-md group-hover:scale-105 transition-transform duration-200`}>
+                          {item.icon}
                         </div>
-                        <div>
-                          <h3 className="font-semibold text-white mb-1">{item.title}</h3>
-                          <p className="text-sm text-gray-400">{item.description}</p>
+                        <div className="flex-1">
+                          <h3 className="font-medium text-white mb-0.5 group-hover:text-blue-400 transition-colors text-sm">{item.title}</h3>
+                          <p className="text-xs text-slate-400 leading-relaxed">{item.description}</p>
                         </div>
                       </Link>
                     ))}
@@ -259,16 +332,21 @@ const Navbar = () => {
               </button>
 
               {activeDropdown === 'xidmetler' && (
-                <div className="absolute top-full left-0 mt-2 w-80 bg-slate-800 rounded-lg shadow-xl z-50 border border-slate-700">
-                  <div className="p-4 space-y-2">
+                <div className="absolute top-full left-0 mt-2 w-72 bg-slate-800/95 backdrop-blur-md rounded-xl shadow-xl z-50 border border-slate-600/30 max-h-60 overflow-y-auto dropdown-scrollbar">
+                  <div className="p-4 space-y-1">
                     {xidmetlerItems.map((item, index) => (
-                      <Link key={index} to={item.path} className="flex items-start space-x-3 p-3 rounded-lg hover:bg-slate-700 cursor-pointer transition-colors">
-                        <div className="w-12 h-12 bg-orange-600 rounded-lg flex items-center justify-center">
-                          <div className="w-6 h-4 border-2 border-white rounded"></div>
+                      <Link 
+                        key={index} 
+                        to={item.path} 
+                        className="flex items-start space-x-3 p-3 rounded-lg hover:bg-slate-700/40 cursor-pointer transition-all duration-200 group"
+                        onClick={() => setActiveDropdown(null)}
+                      >
+                        <div className={`w-10 h-10 ${item.bgColor} rounded-lg flex items-center justify-center shadow-md group-hover:scale-105 transition-transform duration-200`}>
+                          {item.icon}
                         </div>
-                        <div>
-                          <h3 className="font-semibold text-white mb-1">{item.title}</h3>
-                          <p className="text-sm text-gray-400">{item.description}</p>
+                        <div className="flex-1">
+                          <h3 className="font-medium text-white mb-0.5 group-hover:text-blue-400 transition-colors text-sm">{item.title}</h3>
+                          <p className="text-xs text-slate-400 leading-relaxed">{item.description}</p>
                         </div>
                       </Link>
                     ))}
@@ -288,16 +366,21 @@ const Navbar = () => {
               </button>
 
               {activeDropdown === 'sirket' && (
-                <div className="absolute top-full left-0 mt-2 w-80 bg-slate-800 rounded-lg shadow-xl z-50 border border-slate-700">
-                  <div className="p-4 space-y-2">
+                <div className="absolute top-full left-0 mt-2 w-72 bg-slate-800/95 backdrop-blur-md rounded-xl shadow-xl z-50 border border-slate-600/30 max-h-60 overflow-y-auto dropdown-scrollbar">
+                  <div className="p-4 space-y-1">
                     {sirketItems.map((item, index) => (
-                      <Link key={index} to={item.path} className="flex items-start space-x-3 p-3 rounded-lg hover:bg-slate-700 cursor-pointer transition-colors">
-                        <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center">
-                          <div className="w-6 h-4 border-2 border-white rounded"></div>
+                      <Link 
+                        key={index} 
+                        to={item.path} 
+                        className="flex items-start space-x-3 p-3 rounded-lg hover:bg-slate-700/40 cursor-pointer transition-all duration-200 group"
+                        onClick={() => setActiveDropdown(null)}
+                      >
+                        <div className={`w-10 h-10 ${item.bgColor} rounded-lg flex items-center justify-center shadow-md group-hover:scale-105 transition-transform duration-200`}>
+                          {item.icon}
                         </div>
-                        <div>
-                          <h3 className="font-semibold text-white mb-1">{item.title}</h3>
-                          <p className="text-sm text-gray-400">{item.description}</p>
+                        <div className="flex-1">
+                          <h3 className="font-medium text-white mb-0.5 group-hover:text-blue-400 transition-colors text-sm">{item.title}</h3>
+                          <p className="text-xs text-slate-400 leading-relaxed">{item.description}</p>
                         </div>
                       </Link>
                     ))}
@@ -325,11 +408,11 @@ const Navbar = () => {
               </button>
 
               {activeDropdown === 'language' && (
-                <div className="absolute top-full right-0 mt-2 w-12 bg-slate-800 rounded-lg shadow-xl z-50 border border-slate-700">
-                  <div className="p-1">
+                <div className="absolute top-full right-0 mt-2 w-16 bg-slate-800/95 backdrop-blur-md rounded-lg shadow-xl z-50 border border-slate-600/30">
+                  <div className="p-2">
                     {languages.map((lang, index) => (
-                      <div key={index} className="flex items-center justify-center p-1 rounded hover:bg-slate-700 cursor-pointer transition-colors">
-                        <img src={lang.flag} alt={lang.name} className="w-4 h-3" />
+                      <div key={index} className="flex items-center justify-center p-2 rounded-md hover:bg-slate-700/40 cursor-pointer transition-all duration-200">
+                        <img src={lang.flag} alt={lang.name} className="w-5 h-3" />
                       </div>
                     ))}
                   </div>
@@ -348,10 +431,10 @@ const Navbar = () => {
               </button>
 
               {activeDropdown === 'currency' && (
-                <div className="absolute top-full right-0 mt-2 w-12 bg-slate-800 rounded-lg shadow-xl z-50 border border-slate-700">
-                  <div className="p-1">
+                <div className="absolute top-full right-0 mt-2 w-16 bg-slate-800/95 backdrop-blur-md rounded-lg shadow-xl z-50 border border-slate-600/30">
+                  <div className="p-2">
                     {currencies.map((currency, index) => (
-                      <div key={index} className="flex items-center justify-center p-1 rounded hover:bg-slate-700 cursor-pointer transition-colors">
+                      <div key={index} className="flex items-center justify-center p-2 rounded-md hover:bg-slate-700/40 cursor-pointer transition-all duration-200">
                         <span className="text-lg">{currency.symbol}</span>
                       </div>
                     ))}
@@ -366,10 +449,11 @@ const Navbar = () => {
             </button>
 
             {/* Daxil olun */}
-         <Link to="/Login"
-      className="inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-500 transition-colors">
-  Daxil olun
-</Link></div>
+            <Link to="/Login"
+              className="inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-500 transition-colors">
+              Daxil olun
+            </Link>
+          </div>
         </div>
       </div>
 

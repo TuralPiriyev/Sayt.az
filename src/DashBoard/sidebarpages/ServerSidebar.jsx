@@ -1,7 +1,7 @@
 import React from 'react';
 import { Server } from 'lucide-react';
 
-const VpsSidebar = () => {
+const ServerSidebar = () => {
   return (
     <div className="bg-white rounded-lg border border-gray-200 shadow-sm">
       {/* Header */}
@@ -10,7 +10,7 @@ const VpsSidebar = () => {
           <div className="p-2 bg-blue-50 rounded-lg">
             <Server className="w-6 h-6 text-blue-600" />
           </div>
-          <h2 className="text-xl font-semibold text-gray-900">VPS</h2>
+          <h2 className="text-xl font-semibold text-gray-900">Servers</h2>
         </div>
         <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-colors duration-200">
           Buy
@@ -20,10 +20,9 @@ const VpsSidebar = () => {
       {/* Table Container */}
       <div className="p-6">
         {/* Table Header */}
-        <div className="grid grid-cols-7 gap-4 pb-4 border-b border-gray-200">
-          <div className="text-sm font-medium text-gray-600">CPU</div>
-          <div className="text-sm font-medium text-gray-600">Memory (RAM)</div>
-          <div className="text-sm font-medium text-gray-600">Disk</div>
+        <div className="grid grid-cols-6 gap-4 pb-4 border-b border-gray-200">
+          <div className="text-sm font-medium text-gray-600">Site URL</div>
+          <div className="text-sm font-medium text-gray-600">Package</div>
           <div className="text-sm font-medium text-gray-600">Price</div>
           <div className="text-sm font-medium text-gray-600">Expire date</div>
           <div className="text-sm font-medium text-gray-600">Status</div>
@@ -32,11 +31,11 @@ const VpsSidebar = () => {
 
         {/* Empty State */}
         <div className="py-16 text-center">
-          <p className="text-gray-500 text-sm">You don't have any active virtual private server yet</p>
+          <p className="text-gray-500 text-sm">You don't have any active dedicated server yet</p>
         </div>
       </div>
     </div>
   );
 };
 
-export default VpsSidebar;
+export default ServerSidebar;

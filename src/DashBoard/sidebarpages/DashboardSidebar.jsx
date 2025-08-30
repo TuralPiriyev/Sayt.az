@@ -1,176 +1,365 @@
-import { Globe, Server, Database, HardDrive, Shield, TrendingUp, Users, Activity } from 'lucide-react';
+import React, { useState } from 'react';
+import { 
+  Globe, 
+  Server, 
+  HardDrive, 
+  Database,
+  Calendar,
+  ExternalLink,
+  Settings,
+  Trash2,
+  CheckCircle,
+  XCircle,
+  AlertCircle
+} from 'lucide-react';
 
-const DashboardSidebar = () => {
+function DashboardSidebar() {
+  const [activeTab, setActiveTab] = useState('domains');
+
+  const statsData = [
+    { title: 'Domains', count: 0, icon: Globe },
+    { title: 'Web Hosting', count: 0, icon: Server },
+    { title: 'VPS', count: 0, icon: HardDrive },
+    { title: 'Servers', count: 0, icon: Database }
+  ];
+
+  const domains = [];
+  const hosting = [];
+  const vps = [];
+  const servers = [];
+
+  const getStatusBadge = (status) => {
+    const baseClasses = "px-2 py-1 rounded-full text-xs font-medium";
+    switch (status) {
+      case 'active':
+        return `${baseClasses} bg-green-100 text-green-800`;
+      case 'inactive':
+        return `${baseClasses} bg-red-100 text-red-800`;
+      case 'pending':
+        return `${baseClasses} bg-yellow-100 text-yellow-800`;
+      default:
+        return `${baseClasses} bg-gray-100 text-gray-800`;
+    }
+  };
+
+  const getStatusIcon = (status) => {
+    switch (status) {
+      case 'active':
+        return <CheckCircle className="w-4 h-4 text-green-600" />;
+      case 'inactive':
+        return <XCircle className="w-4 h-4 text-red-600" />;
+      case 'pending':
+        return <AlertCircle className="w-4 h-4 text-yellow-600" />;
+      default:
+        return <AlertCircle className="w-4 h-4 text-gray-600" />;
+    }
+  };
+
+  const EmptyState = ({ service }) => (
+    <div className="text-center py-12">
+      <div className="w-16 h-16 mx-auto mb-4 bg-gray-100 rounded-full flex items-center justify-center">
+        <Database className="w-8 h-8 text-gray-400" />
+      </div>
+      <p className="text-gray-500 text-sm mb-2">No data</p>
+      <p className="text-gray-400 text-xs">You don't have any active {service} yet</p>
+    </div>
+  );
+
+  const renderTabContent = () => {
+    switch (activeTab) {
+      case 'domains':
+        return (
+          <div className="bg-white rounded-lg shadow-sm border">
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead className="bg-gray-50 border-b">
+                  <tr>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Site URL</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">NS</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Expire date</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {domains.length === 0 ? (
+                    <tr>
+                      <td colSpan={4}>
+                        <EmptyState service="domain" />
+                      </td>
+                    </tr>
+                  ) : (
+                    domains.map((domain) => (
+                      <tr key={domain.id} className="border-b hover:bg-gray-50">
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="flex items-center">
+                            <ExternalLink className="w-4 h-4 text-gray-400 mr-2" />
+                            <span className="text-sm text-blue-600">{domain.url}</span>
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">-</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{domain.expireDate}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm">
+                          <div className="flex space-x-2">
+                            <button className="text-blue-600 hover:text-blue-800">
+                              <Settings className="w-4 h-4" />
+                            </button>
+                            <button className="text-red-600 hover:text-red-800">
+                              <Trash2 className="w-4 h-4" />
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        );
+
+      case 'hosting':
+        return (
+          <div className="bg-white rounded-lg shadow-sm border">
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead className="bg-gray-50 border-b">
+                  <tr>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Site URL</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Package</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">NS</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Expire date</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {hosting.length === 0 ? (
+                    <tr>
+                      <td colSpan={6}>
+                        <EmptyState service="hosting" />
+                      </td>
+                    </tr>
+                  ) : (
+                    hosting.map((host) => (
+                      <tr key={host.id} className="border-b hover:bg-gray-50">
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="flex items-center">
+                            <ExternalLink className="w-4 h-4 text-gray-400 mr-2" />
+                            <span className="text-sm text-blue-600">{host.url}</span>
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{host.package}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">-</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{host.expireDate}</td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <span className={getStatusBadge(host.status)}>{host.status}</span>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm">
+                          <div className="flex space-x-2">
+                            <button className="text-blue-600 hover:text-blue-800">
+                              <Settings className="w-4 h-4" />
+                            </button>
+                            <button className="text-red-600 hover:text-red-800">
+                              <Trash2 className="w-4 h-4" />
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        );
+
+      case 'vps':
+        return (
+          <div className="bg-white rounded-lg shadow-sm border">
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead className="bg-gray-50 border-b">
+                  <tr>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">CPU</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Memory (RAM)</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Disk</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Expire date</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {vps.length === 0 ? (
+                    <tr>
+                      <td colSpan={7}>
+                        <EmptyState service="virtual private server" />
+                      </td>
+                    </tr>
+                  ) : (
+                    vps.map((server) => (
+                      <tr key={server.id} className="border-b hover:bg-gray-50">
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{server.cpu}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{server.memory}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{server.disk}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{server.price}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{server.expireDate}</td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="flex items-center space-x-1">
+                            {getStatusIcon(server.status)}
+                            <span className={getStatusBadge(server.status)}>{server.status}</span>
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm">
+                          <div className="flex space-x-2">
+                            <button className="text-blue-600 hover:text-blue-800">
+                              <Settings className="w-4 h-4" />
+                            </button>
+                            <button className="text-red-600 hover:text-red-800">
+                              <Trash2 className="w-4 h-4" />
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        );
+
+      case 'servers':
+        return (
+          <div className="bg-white rounded-lg shadow-sm border">
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead className="bg-gray-50 border-b">
+                  <tr>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Site URL</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Package</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Expire date</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {servers.length === 0 ? (
+                    <tr>
+                      <td colSpan={6}>
+                        <EmptyState service="dedicated server" />
+                      </td>
+                    </tr>
+                  ) : (
+                    servers.map((server) => (
+                      <tr key={server.id} className="border-b hover:bg-gray-50">
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="flex items-center">
+                            <ExternalLink className="w-4 h-4 text-gray-400 mr-2" />
+                            <span className="text-sm text-blue-600">{server.url}</span>
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{server.package}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{server.price}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{server.expireDate}</td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="flex items-center space-x-1">
+                            {getStatusIcon(server.status)}
+                            <span className={getStatusBadge(server.status)}>{server.status}</span>
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm">
+                          <div className="flex space-x-2">
+                            <button className="text-blue-600 hover:text-blue-800">
+                              <Settings className="w-4 h-4" />
+                            </button>
+                            <button className="text-red-600 hover:text-red-800">
+                              <Trash2 className="w-4 h-4" />
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        );
+
+      default:
+        return null;
+    }
+  };
+
   return (
-    <div className="space-y-6">
-      {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl p-6 text-white">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-blue-100 text-sm">Domainlər</p>
-              <p className="text-3xl font-bold">0</p>
-              <p className="text-blue-100 text-xs mt-1">+0 bu ay</p>
-            </div>
-            <div className="bg-white/20 rounded-lg p-3">
-              <Globe className="w-8 h-8" />
-            </div>
-          </div>
-        </div>
-        
-        <div className="bg-gradient-to-r from-green-500 to-green-600 rounded-xl p-6 text-white">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-green-100 text-sm">Web Hosting</p>
-              <p className="text-3xl font-bold">0</p>
-              <p className="text-green-100 text-xs mt-1">+0 bu ay</p>
-            </div>
-            <div className="bg-white/20 rounded-lg p-3">
-              <Server className="w-8 h-8" />
-            </div>
-          </div>
-        </div>
-        
-        <div className="bg-gradient-to-r from-purple-500 to-purple-600 rounded-xl p-6 text-white">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-purple-100 text-sm">VPS</p>
-              <p className="text-3xl font-bold">0</p>
-              <p className="text-purple-100 text-xs mt-1">+0 bu ay</p>
-            </div>
-            <div className="bg-white/20 rounded-lg p-3">
-              <Database className="w-8 h-8" />
-            </div>
-          </div>
-        </div>
-        
-        <div className="bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl p-6 text-white">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-orange-100 text-sm">Serverlər</p>
-              <p className="text-3xl font-bold">0</p>
-              <p className="text-orange-100 text-xs mt-1">+0 bu ay</p>
-            </div>
-            <div className="bg-white/20 rounded-lg p-3">
-              <HardDrive className="w-8 h-8" />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Content Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Activity Chart */}
-        <div className="lg:col-span-2 bg-white rounded-xl shadow-sm border p-6">
-          <div className="flex items-center justify-between mb-6">
-            <h3 className="text-lg font-semibold text-gray-900">Aktivlik</h3>
-            <div className="flex space-x-2">
-              <button className="px-3 py-1 bg-blue-100 text-blue-600 rounded-lg text-sm">7 gün</button>
-              <button className="px-3 py-1 text-gray-500 rounded-lg text-sm">30 gün</button>
-              <button className="px-3 py-1 text-gray-500 rounded-lg text-sm">90 gün</button>
-            </div>
-          </div>
-          
-          <div className="h-64 flex items-center justify-center bg-gray-50 rounded-lg">
-            <div className="text-center">
-              <Activity className="w-12 h-12 text-gray-400 mx-auto mb-3" />
-              <p className="text-gray-500">Hələ heç bir aktivlik yoxdur</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Quick Actions */}
-        <div className="bg-white rounded-xl shadow-sm border p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-6">Tez Əməliyyatlar</h3>
-          <div className="space-y-3">
-            <button className="w-full bg-blue-50 hover:bg-blue-100 text-blue-700 p-4 rounded-lg text-left transition-colors">
-              <div className="flex items-center space-x-3">
-                <Globe className="w-5 h-5" />
-                <div>
-                  <p className="font-medium">Domain əlavə et</p>
-                  <p className="text-sm text-blue-600">Yeni domain qeydiyyatı</p>
+    <div className="min-h-screen bg-gray-50">
+      <div className="max-w-7xl mx-auto p-6">
+        {/* Statistics Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          {statsData.map((stat, index) => {
+            const IconComponent = stat.icon;
+            return (
+              <div key={index} className="bg-white rounded-lg shadow-sm border p-6 hover:shadow-md transition-shadow">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-2xl font-bold text-gray-900">{stat.count}</p>
+                    <p className="text-sm font-medium text-gray-600">{stat.title}</p>
+                  </div>
+                  <div className="p-3 bg-blue-50 rounded-full">
+                    <IconComponent className="w-6 h-6 text-blue-600" />
+                  </div>
                 </div>
               </div>
-            </button>
-            
-            <button className="w-full bg-green-50 hover:bg-green-100 text-green-700 p-4 rounded-lg text-left transition-colors">
-              <div className="flex items-center space-x-3">
-                <Server className="w-5 h-5" />
-                <div>
-                  <p className="font-medium">Hosting sifariş et</p>
-                  <p className="text-sm text-green-600">Web hosting paketi</p>
-                </div>
-              </div>
-            </button>
-            
-            <button className="w-full bg-purple-50 hover:bg-purple-100 text-purple-700 p-4 rounded-lg text-left transition-colors">
-              <div className="flex items-center space-x-3">
-                <Database className="w-5 h-5" />
-                <div>
-                  <p className="font-medium">VPS yarat</p>
-                  <p className="text-sm text-purple-600">Virtual server</p>
-                </div>
-              </div>
-            </button>
-          </div>
+            );
+          })}
         </div>
-      </div>
 
-      {/* Recent Activity & System Status */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-xl shadow-sm border p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Son Aktivliklər</h3>
-          <div className="space-y-4">
-            <div className="flex items-center space-x-3 text-gray-500">
-              <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
-              <span className="text-sm">Hələ heç bir aktivlik yoxdur</span>
-            </div>
+        {/* Navigation Tabs */}
+        <div className="mb-6">
+          <div className="border-b border-gray-200">
+            <nav className="-mb-px flex space-x-8">
+              {[
+                { key: 'domains', label: 'Domains', icon: Globe },
+                { key: 'hosting', label: 'Hosting', icon: Server },
+                { key: 'vps', label: 'VPS', icon: HardDrive },
+                { key: 'servers', label: 'Servers', icon: Database }
+              ].map((tab) => {
+                const IconComponent = tab.icon;
+                return (
+                  <button
+                    key={tab.key}
+                    onClick={() => setActiveTab(tab.key)}
+                    className={`flex items-center space-x-2 py-4 px-1 border-b-2 font-medium text-sm transition-colors ${
+                      activeTab === tab.key
+                        ? 'border-blue-500 text-blue-600'
+                        : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                    }`}
+                  >
+                    <IconComponent className="w-4 h-4" />
+                    <span>{tab.label}</span>
+                  </button>
+                );
+              })}
+            </nav>
           </div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Sistem Statusu</h3>
-          <div className="space-y-3">
-            <div className="flex items-center justify-between">
-              <span className="text-sm text-gray-600">Web Hosting</span>
-              <div className="flex items-center space-x-2">
-                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                <span className="text-sm text-green-600">Online</span>
-              </div>
-            </div>
-            <div className="flex items-center justify-between">
-              <span className="text-sm text-gray-600">VPS Serverlər</span>
-              <div className="flex items-center space-x-2">
-                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                <span className="text-sm text-green-600">Online</span>
-              </div>
-            </div>
-            <div className="flex items-center justify-between">
-              <span className="text-sm text-gray-600">Domain DNS</span>
-              <div className="flex items-center space-x-2">
-                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                <span className="text-sm text-green-600">Online</span>
-              </div>
-            </div>
-          </div>
+        {/* Tab Content */}
+        <div className="mb-6">
+          {renderTabContent()}
         </div>
-      </div>
 
-      {/* No Data State */}
-      <div className="flex justify-center py-12">
-        <div className="text-center max-w-md">
-          <div className="w-24 h-24 bg-slate-900 rounded-xl flex items-center justify-center mx-auto mb-6">
-            <Shield className="w-12 h-12 text-white" />
-          </div>
-          <h3 className="text-xl font-semibold text-gray-900 mb-2">Məlumat yoxdur</h3>
-          <p className="text-gray-600 mb-6">Hələ heç bir aktiv domen və ya xidmət yoxdur. Başlamaq üçün yuxarıdakı düymələrdən istifadə edin.</p>
-          <button className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
-            İlk xidməti əlavə et
-          </button>
+        {/* Footer */}
+        <div className="text-center py-8 border-t border-gray-200 mt-12">
+          <p className="text-gray-500 text-sm">
+            © 2025 Hosting Dashboard. Professional hosting management interface.
+          </p>
         </div>
       </div>
     </div>
   );
-};
+}
 
 export default DashboardSidebar;

@@ -90,13 +90,15 @@ const Login = () => {
               </button>
             </div>
 
-            {/* Login Button */}
-            <Link to = "SidebarSidebar"
-              type="button"
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-medium transition-colors shadow-lg"
-            >
-              Hesabınıza daxil olun
-            </Link>
+            {/* Login Button - Centered and improved styling */}
+            <div className="flex justify-center">
+              <Link 
+                to="/SidebarSidebar"
+                className="inline-block bg-gradient-to-r from-blue-800 to-blue-900 hover:from-blue-900 hover:to-gray-900 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-[1.02] border border-blue-700/50"
+              >
+                Hesabınıza daxil olun
+              </Link>
+            </div>
           </div>
 
           {/* Register Link */}

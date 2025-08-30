@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 
 // <-- Düzəliş: SidebarSidebar və HeaderSidebar Controller qovluğunda yerləşirsə belə import et:
-import SidebarSidebar from '../DashBoard/Controller/SidebasSidebar';
+import SidebarSidebar from '../DashBoard/Controller/SidebarSidebar';
 import HeaderSidebar from '../DashBoard/Controller/HeaderSidebar';
 
 const DashBoardLayout = () => {

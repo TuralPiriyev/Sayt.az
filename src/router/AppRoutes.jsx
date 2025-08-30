@@ -34,7 +34,7 @@ import Register from '../pages/Authentication/Register';
 //Dashboard
 import DashBoardLayout from '../layout/DashBoardLayOut';
 import DashBoardRoutes from './DashBoardRoutes'; 
-import SidebarSidebar from '../DashBoard/Controller/SidebasSidebar';
+import SidebarSidebar from '../DashBoard/Controller/SidebarSidebar';
 function AppRoutes() {
   return (
     <BrowserRouter>
